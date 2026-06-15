@@ -1,0 +1,110 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  DOTNET_VERSION: '10.0.x'
+
+jobs:
+  lint:
+    name: Code Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Run dotnet format
+        run: dotnet format --verify-no-changes
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Build
+        run: dotnet build CFCHub.sln --no-incremental -warnaserror
+
+  unit-tests:
+    name: Unit Tests & Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          
+      - name: Run Unit Tests
+        run: dotnet test tests/CFCHub.UnitTests --collect:"XPlat Code Coverage" --results-directory ./coverage
+        
+      - name: Report Coverage with ReportGenerator
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:"coverage/**/coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:"Html;Cobertura" -assemblyfilters:"+CFCHub.Domain"
+          
+      - name: Enforce 90% Coverage Gate on Domain
+        run: |
+          COVERAGE_RATE=$(grep -oP '(?<=<coverage line-rate=")[0-9.]+' coveragereport/Cobertura.xml | head -n 1 || true)
+          if [ -z "$COVERAGE_RATE" ]; then
+            echo "Could not find coverage line-rate in report. Assuming coverage is missing or failed."
+            exit 1
+          fi
+          
+          COVERAGE_PERCENT=$(awk "BEGIN {print $COVERAGE_RATE * 100}")
+          echo "CFCHub.Domain line coverage is $COVERAGE_PERCENT%"
+          
+          if awk "BEGIN {exit !($COVERAGE_PERCENT < 90)}"; then
+            echo "Coverage is below 90%. Failing the build."
+            exit 1
+          fi
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: cfchub
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          
+      - name: Run Integration Tests
+        run: dotnet test tests/CFCHub.IntegrationTests
+        env:
+          ConnectionStrings__Postgres: "Host=localhost;Port=5432;Database=cfchub;Username=postgres;Password=password"
+          ConnectionStrings__Redis: "localhost:6379"

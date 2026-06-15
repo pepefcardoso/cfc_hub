@@ -1,0 +1,64 @@
+name: CD Staging
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  id-token: write # Required for requesting the JWT to authenticate with AWS via OIDC
+  contents: read
+
+env:
+  AWS_REGION: sa-east-1 # Targeting Brazil AWS region for LGPD
+  ECR_REPOSITORY: cfchub-stg-api
+  ECS_SERVICE: cfchub-stg-api-svc
+  ECS_CLUSTER: cfchub-stg-cluster
+  CONTAINER_NAME: api
+  AWS_OIDC_ROLE_ARN: arn:aws:iam::123456789012:role/CFCHub_GitHubActionsRole_Stg
+
+jobs:
+  deploy:
+    name: Build & Deploy to ECS Staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_OIDC_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f src/CFCHub.Api/Dockerfile .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition --task-definition cfchub-stg-task --query taskDefinition > task-def.json
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-def.json
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true

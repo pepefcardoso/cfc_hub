@@ -7,8 +7,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\CFCHub.Application\CFCHub.Application.csproj" />
     <ProjectReference Include="..\..\src\CFCHub.Domain\CFCHub.Domain.csproj" />
+    <ProjectReference Include="..\..\src\CFCHub.Api\CFCHub.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.Sinks.AwsCloudWatch" />
+    <PackageReference Include="Serilog.Sinks.Seq" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

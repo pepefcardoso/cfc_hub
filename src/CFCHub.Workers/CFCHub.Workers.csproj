@@ -5,10 +5,15 @@
   <ItemGroup>
     <ProjectReference Include="..\CFCHub.Application\CFCHub.Application.csproj" />
     <ProjectReference Include="..\CFCHub.Infrastructure\CFCHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\CFCHub.Api\CFCHub.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Extensions.Hosting" />
+    <PackageReference Include="Serilog.Sinks.AwsCloudWatch" />
+    <PackageReference Include="Serilog.Sinks.Seq" />
     <PackageReference Include="StackExchange.Redis" />
     <PackageReference Include="AWSSDK.S3" />
     <PackageReference Include="AWSSDK.SimpleEmail" />

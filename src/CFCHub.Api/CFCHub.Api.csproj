@@ -11,5 +11,8 @@
     <PackageReference Include="Serilog.AspNetCore" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Sinks.AwsCloudWatch" />
+    <PackageReference Include="Serilog.Sinks.Seq" />
   </ItemGroup>
 </Project>

@@ -7,12 +7,14 @@ namespace CFCHub.UnitTests.Domain.Shared;
 
 public class StronglyTypedIdTests
 {
+    private record TestId(Guid Value) : StronglyTypedId<Guid>(Value);
+
     [Fact]
     public void StronglyTypedId_ImplicitConversion_ReturnsUnderlyingValue()
     {
         // Arrange
         var guid = Guid.NewGuid();
-        var id = new StronglyTypedId<Guid>(guid);
+        var id = new TestId(guid);
 
         // Act
         Guid result = id;
@@ -26,7 +28,7 @@ public class StronglyTypedIdTests
     {
         // Arrange
         var guid = Guid.NewGuid();
-        var id = new StronglyTypedId<Guid>(guid);
+        var id = new TestId(guid);
 
         // Act
         var result = id.ToString();

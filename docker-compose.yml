@@ -1,0 +1,68 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=cfchub
+      - POSTGRES_USER=cfchub
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+  seq:
+    image: datalust/seq:latest
+    ports:
+      - "5341:80"
+    environment:
+      - ACCEPT_EULA=Y
+
+  api:
+    build:
+      context: .
+      dockerfile: src/CFCHub.Api/Dockerfile
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=${CFCHUB_DB_CONNECTION_STRING}
+      - ConnectionStrings__Redis=${CFCHUB_REDIS_CONNECTION_STRING}
+      - CFCHUB_AWS_REGION=${CFCHUB_AWS_REGION}
+      - CFCHUB_S3_DOCUMENTS_BUCKET=${CFCHUB_S3_DOCUMENTS_BUCKET}
+      - CFCHUB_S3_MEDICAL_BUCKET=${CFCHUB_S3_MEDICAL_BUCKET}
+      - CFCHUB_SES_FROM_ADDRESS=${CFCHUB_SES_FROM_ADDRESS}
+      - CFCHUB_JWT_PRIVATE_KEY_ARN=${CFCHUB_JWT_PRIVATE_KEY_ARN}
+      - CFCHUB_DATA_PROTECTION_KEY_PREFIX=${CFCHUB_DATA_PROTECTION_KEY_PREFIX}
+
+  workers:
+    build:
+      context: .
+      dockerfile: src/CFCHub.Workers/Dockerfile
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=${CFCHUB_DB_CONNECTION_STRING}
+      - ConnectionStrings__Redis=${CFCHUB_REDIS_CONNECTION_STRING}
+      - CFCHUB_AWS_REGION=${CFCHUB_AWS_REGION}
+      - CFCHUB_S3_DOCUMENTS_BUCKET=${CFCHUB_S3_DOCUMENTS_BUCKET}
+      - CFCHUB_S3_MEDICAL_BUCKET=${CFCHUB_S3_MEDICAL_BUCKET}
+      - CFCHUB_SES_FROM_ADDRESS=${CFCHUB_SES_FROM_ADDRESS}
+      - CFCHUB_JWT_PRIVATE_KEY_ARN=${CFCHUB_JWT_PRIVATE_KEY_ARN}
+      - CFCHUB_DATA_PROTECTION_KEY_PREFIX=${CFCHUB_DATA_PROTECTION_KEY_PREFIX}
+
+volumes:
+  pgdata:
+  redisdata:

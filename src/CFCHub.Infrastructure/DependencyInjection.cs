@@ -1,4 +1,6 @@
 using CFCHub.Application.Common.Interfaces;
+using CFCHub.Domain.Scheduling;
+using CFCHub.Infrastructure.Caching;
 using CFCHub.Infrastructure.Persistence;
 using CFCHub.Infrastructure.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +37,8 @@ public static class DependencyInjection
             ?? "localhost:6379";
         services.AddSingleton<IConnectionMultiplexer>(sp => 
             ConnectionMultiplexer.Connect(redisConnectionString));
+            
+        services.AddSingleton<ISchedulingLockService, RedisLockService>();
             
         return services;
     }

@@ -23,5 +23,6 @@ using (var scope = app.Services.CreateScope())
 app.UseMiddleware<CFCHub.Api.Middleware.SecurityHeadersMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.GlobalExceptionMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.TenantResolutionMiddleware>();
+app.UseMiddleware<CFCHub.Api.Middleware.RateLimitMiddleware>();
 
 app.Run();

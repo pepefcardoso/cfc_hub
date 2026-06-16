@@ -54,6 +54,8 @@ public static class DependencyInjection
             
         services.AddScoped<CFCHub.Infrastructure.Identity.IJwtValidationService, CFCHub.Infrastructure.Identity.JwtValidationService>();
         services.AddScoped<ICurrentUserService, CFCHub.Infrastructure.Identity.CurrentUserService>();
+        
+        services.AddSingleton<IRateLimiter, RedisRateLimiter>();
             
         return services;
     }

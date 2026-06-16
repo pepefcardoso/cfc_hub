@@ -46,6 +46,7 @@ public class InstructorConfiguration : IEntityTypeConfiguration<Instructor>
         builder.OwnsMany(x => x.Overrides, ob => 
         {
             ob.ToJson();
+            ob.OwnsMany(o => o.CustomWindows);
         });
 
         builder.Ignore(x => x.DomainEvents);

@@ -3,6 +3,7 @@ using CFCHub.Api.Telemetry;
 using CFCHub.Application;
 using CFCHub.Application.Common.Telemetry;
 using CFCHub.Infrastructure;
+using CFCHub.Api.Endpoints.Webhooks;
 
 var builder = WebApplication.CreateBuilder(args);
 LoggingConfiguration.ConfigureSerilog(builder);
@@ -24,5 +25,7 @@ app.UseMiddleware<CFCHub.Api.Middleware.SecurityHeadersMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.GlobalExceptionMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.TenantResolutionMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.RateLimitMiddleware>();
+
+app.MapSesWebhooks();
 
 app.Run();

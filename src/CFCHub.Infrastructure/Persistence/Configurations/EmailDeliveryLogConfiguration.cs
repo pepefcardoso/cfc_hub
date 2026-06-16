@@ -1,4 +1,4 @@
-using CFCHub.Infrastructure.Email;
+using CFCHub.Domain.Shared.Email;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,11 +12,15 @@ public class EmailDeliveryLogConfiguration : IEntityTypeConfiguration<EmailDeliv
 
         builder.HasKey(e => e.Id);
         
-        builder.Property(e => e.Id).HasColumnName("id");
-        builder.Property(e => e.MessageId).HasColumnName("message_id").IsRequired();
-        builder.Property(e => e.NotificationType).HasColumnName("notification_type").IsRequired();
-        builder.Property(e => e.DestinationAddress).HasColumnName("destination_address").IsRequired();
-        builder.Property(e => e.StatusDetails).HasColumnName("status_details");
+        builder.Property(e => e.Id)
+            .HasColumnName("id")
+            .HasConversion(id => id.Value, value => new EmailDeliveryLogId(value));
+            
+        builder.Property(e => e.SesMessageId).HasColumnName("ses_message_id").IsRequired();
+        builder.Property(e => e.EventType).HasColumnName("event_type").IsRequired();
+        builder.Property(e => e.RecipientAddressHash).HasColumnName("recipient_address_hash").IsRequired();
+        builder.Property(e => e.BounceType).HasColumnName("bounce_type");
         builder.Property(e => e.Timestamp).HasColumnName("timestamp");
+        builder.Property(e => e.OccurredAt).HasColumnName("occurred_at");
     }
 }

@@ -9,5 +9,6 @@ public static class InstructorAvailabilityTemplateConfiguration
     public static void Configure(OwnedNavigationBuilder<Instructor, InstructorAvailabilityTemplate> builder)
     {
         builder.ToJson("weekly_template");
+        builder.OwnsMany(x => x.Windows);
     }
 }

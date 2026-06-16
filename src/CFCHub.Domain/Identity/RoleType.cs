@@ -5,5 +5,6 @@ public enum RoleType
     Admin,
     Receptionist,
     Instructor,
-    Financial
+    Financial,
+    DetranAdmin
 }

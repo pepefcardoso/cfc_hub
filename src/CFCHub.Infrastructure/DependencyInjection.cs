@@ -17,7 +17,9 @@ public static class DependencyInjection
         services.AddScoped<ITenantContext, TenantContext>();
         
         services.AddScoped<TenantMigrationOrchestrator>();
-        services.AddScoped<TenantProvisioningService>();
+        services.AddScoped<ITenantProvisioningService, TenantProvisioningService>();
+        services.AddScoped<TenantProvisioningService>(); // Keep this if tests use it directly
+        services.AddScoped<ITenantRegistry, TenantRegistry>();
         
         services.AddSingleton<AuditInterceptor>();
         

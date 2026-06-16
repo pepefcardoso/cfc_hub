@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CFCHub.Infrastructure.Persistence;
 
-public class TenantProvisioningService
+public class TenantProvisioningService : ITenantProvisioningService
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<TenantProvisioningService> _logger;

@@ -14,6 +14,9 @@ public static class DependencyInjection
     {
         services.AddScoped<ITenantContext, TenantContext>();
         
+        services.AddScoped<TenantMigrationOrchestrator>();
+        services.AddScoped<TenantProvisioningService>();
+        
         services.AddSingleton<AuditInterceptor>();
         
         services.AddDbContext<AppDbContext>((sp, options) =>
@@ -24,6 +27,7 @@ public static class DependencyInjection
             
             var auditInterceptor = sp.GetRequiredService<AuditInterceptor>();
             options.AddInterceptors(auditInterceptor);
+            options.ReplaceService<Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory, TenantModelCacheKeyFactory>();
         });
 
         var redisConnectionString = configuration.GetConnectionString("Redis") 

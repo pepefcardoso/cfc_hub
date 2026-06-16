@@ -29,6 +29,8 @@ public class AppDbContext : DbContext
         _clock = clock;
     }
 
+    public string SchemaName => _tenantContext.SchemaName;
+
     public DbSet<SchedulingSlot> SchedulingSlots => Set<SchedulingSlot>();
     public DbSet<Instructor> Instructors => Set<Instructor>();
     public DbSet<Vehicle> Vehicles => Set<Vehicle>();

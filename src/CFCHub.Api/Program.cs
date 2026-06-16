@@ -11,4 +11,11 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var orchestrator = scope.ServiceProvider.GetRequiredService<CFCHub.Infrastructure.Persistence.TenantMigrationOrchestrator>();
+    await orchestrator.InitializeAsync();
+}
+
 app.Run();

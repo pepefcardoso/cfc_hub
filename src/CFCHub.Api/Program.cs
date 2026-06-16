@@ -6,6 +6,7 @@ using CFCHub.Infrastructure;
 using CFCHub.Api.Endpoints.Webhooks;
 using CFCHub.Api.Endpoints.Auth;
 using CFCHub.Api.Endpoints.Identity;
+using CFCHub.Api.Endpoints.Scheduling;
 var builder = WebApplication.CreateBuilder(args);
 LoggingConfiguration.ConfigureSerilog(builder);
 
@@ -30,5 +31,7 @@ app.UseMiddleware<CFCHub.Api.Middleware.RateLimitMiddleware>();
 app.MapSesWebhooks();
 app.MapAuthEndpoints();
 app.MapStaffUserEndpoints();
+app.MapSchedulingEndpoints();
+app.MapInstructorEndpoints();
 
 app.Run();

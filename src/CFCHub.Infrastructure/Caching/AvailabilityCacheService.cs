@@ -37,7 +37,7 @@ public class AvailabilityCacheService : IAvailabilityCacheService
 
         if (!val.HasValue) return null;
 
-        return JsonSerializer.Deserialize<IReadOnlyList<AvailableSlot>>(val!);
+        return JsonSerializer.Deserialize<IReadOnlyList<AvailableSlot>>(val.ToString());
     }
 
     public async Task SetAsync(Guid instructorId, DateOnly date, IReadOnlyList<AvailableSlot> slots, CancellationToken cancellationToken = default)

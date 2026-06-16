@@ -33,7 +33,7 @@ public class TenantCacheService : ITenantCacheService
 
         if (!val.HasValue) return null;
 
-        return JsonSerializer.Deserialize<TenantCacheItem>(val!);
+        return JsonSerializer.Deserialize<TenantCacheItem>(val.ToString());
     }
 
     public async Task SetAsync(string slug, TenantCacheItem tenantContext, CancellationToken cancellationToken = default)

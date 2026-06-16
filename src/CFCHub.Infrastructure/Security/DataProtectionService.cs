@@ -132,7 +132,7 @@ public class DataProtectionService : IDataProtectionService
         if (!_memoryCache.TryGetValue(cacheKey, out string? keyMaterial))
         {
             string secretName = $"{_keyPrefix}{tenantId}";
-            keyMaterial = _secretsManagerService.GetSecret(secretName);
+            keyMaterial = _secretsManagerService.GetSecretAsync(secretName).GetAwaiter().GetResult();
             
             if (string.IsNullOrEmpty(keyMaterial))
             {
@@ -152,7 +152,7 @@ public class DataProtectionService : IDataProtectionService
         if (!_memoryCache.TryGetValue(cacheKey, out string? keyMaterial))
         {
             string secretName = $"{_keyPrefix}{tenantId}/prev";
-            keyMaterial = _secretsManagerService.GetSecret(secretName);
+            keyMaterial = _secretsManagerService.GetSecretAsync(secretName).GetAwaiter().GetResult();
             
             if (!string.IsNullOrEmpty(keyMaterial))
             {

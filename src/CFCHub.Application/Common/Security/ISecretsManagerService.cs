@@ -1,8 +1,9 @@
-using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CFCHub.Application.Common.Security;
 
 public interface ISecretsManagerService
 {
-    string? GetSecret(string secretName);
+    Task<string?> GetSecretAsync(string arn, CancellationToken ct = default);
 }

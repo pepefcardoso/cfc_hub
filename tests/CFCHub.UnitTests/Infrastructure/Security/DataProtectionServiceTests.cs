@@ -38,7 +38,7 @@ public class DataProtectionServiceTests
         RandomNumberGenerator.Fill(key);
         var keyMaterial = Convert.ToBase64String(key);
         
-        _secretsManagerServiceMock.GetSecret($"prefix/{TenantId}").Returns(keyMaterial);
+        _secretsManagerServiceMock.GetSecretAsync($"prefix/{TenantId}").Returns(Task.FromResult<string?>(keyMaterial));
 
         // Act
         var ciphertext = _sut.Encrypt(Plaintext, TenantId);
@@ -58,13 +58,13 @@ public class DataProtectionServiceTests
         RandomNumberGenerator.Fill(key1);
         RandomNumberGenerator.Fill(key2);
         
-        _secretsManagerServiceMock.GetSecret($"prefix/{TenantId}").Returns(Convert.ToBase64String(key1));
+        _secretsManagerServiceMock.GetSecretAsync($"prefix/{TenantId}").Returns(Task.FromResult<string?>(Convert.ToBase64String(key1)));
         var ciphertext = _sut.Encrypt(Plaintext, TenantId);
 
         // Clear cache and change secret to key2
         var newCache = new MemoryCache(new MemoryCacheOptions());
         var sut = new DataProtectionService(_secretsManagerServiceMock, newCache, _configurationMock);
-        _secretsManagerServiceMock.GetSecret($"prefix/{TenantId}").Returns(Convert.ToBase64String(key2));
+        _secretsManagerServiceMock.GetSecretAsync($"prefix/{TenantId}").Returns(Task.FromResult<string?>(Convert.ToBase64String(key2)));
 
         // Act
         Action act = () => sut.Decrypt(ciphertext, TenantId);
@@ -84,7 +84,7 @@ public class DataProtectionServiceTests
         RandomNumberGenerator.Fill(newKey);
         
         // Encrypt with old key
-        _secretsManagerServiceMock.GetSecret($"prefix/{TenantId}").Returns(Convert.ToBase64String(oldKey));
+        _secretsManagerServiceMock.GetSecretAsync($"prefix/{TenantId}").Returns(Task.FromResult<string?>(Convert.ToBase64String(oldKey)));
         var ciphertext = _sut.Encrypt(Plaintext, TenantId);
 
         // Clear cache to simulate rotation
@@ -92,8 +92,8 @@ public class DataProtectionServiceTests
         var sut = new DataProtectionService(_secretsManagerServiceMock, newCache, _configurationMock);
         
         // Secret manager now returns new key for current, old key for /prev
-        _secretsManagerServiceMock.GetSecret($"prefix/{TenantId}").Returns(Convert.ToBase64String(newKey));
-        _secretsManagerServiceMock.GetSecret($"prefix/{TenantId}/prev").Returns(Convert.ToBase64String(oldKey));
+        _secretsManagerServiceMock.GetSecretAsync($"prefix/{TenantId}").Returns(Task.FromResult<string?>(Convert.ToBase64String(newKey)));
+        _secretsManagerServiceMock.GetSecretAsync($"prefix/{TenantId}/prev").Returns(Task.FromResult<string?>(Convert.ToBase64String(oldKey)));
 
         // Act
         var decrypted = sut.Decrypt(ciphertext, TenantId);

@@ -21,7 +21,10 @@ public static class SesEventWebhookHandler
             {
                 if (!tenantContext.IsResolved)
                 {
-                    tenantContext.Resolve("public", "global", Guid.Empty);
+                    if (tenantContext is TenantContext tc)
+                    {
+                        tc.Resolve("public", "global", Guid.Empty);
+                    }
                 }
 
                 using var reader = new StreamReader(context.Request.Body);

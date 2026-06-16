@@ -42,6 +42,9 @@ public static class DependencyInjection
         
         services.AddScoped<IAvailabilityCacheService, AvailabilityCacheService>();
         services.AddSingleton<ITenantCacheService, TenantCacheService>();
+        
+        services.AddSingleton<CFCHub.Application.Common.Security.ISecretsManagerService, CFCHub.Infrastructure.Security.SecretsManagerService>();
+        services.AddSingleton<CFCHub.Application.Common.Security.IDataProtectionService, CFCHub.Infrastructure.Security.DataProtectionService>();
             
         return services;
     }

@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
 using StackExchange.Redis;
+using CFCHub.Infrastructure.Caching;
 
 namespace CFCHub.Infrastructure.Persistence.Interceptors;
 
@@ -26,17 +27,20 @@ public class AuditInterceptor : SaveChangesInterceptor
     private readonly ICurrentUserService _currentUserService;
     private readonly ISystemClock _clock;
     private readonly IConnectionMultiplexer _redis;
+    private readonly IAvailabilityCacheService _availabilityCache;
 
     public AuditInterceptor(
         ITenantContext tenantContext,
         ICurrentUserService currentUserService,
         ISystemClock clock,
-        IConnectionMultiplexer redis)
+        IConnectionMultiplexer redis,
+        IAvailabilityCacheService availabilityCache)
     {
         _tenantContext = tenantContext;
         _currentUserService = currentUserService;
         _clock = clock;
         _redis = redis;
+        _availabilityCache = availabilityCache;
     }
 
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
@@ -168,11 +172,8 @@ public class AuditInterceptor : SaveChangesInterceptor
     {
         if (slot.InstructorId != null)
         {
-            var date = slot.StartedAt.ToString("yyyy-MM-dd");
-            var key = $"sched:avail:instructor:{slot.InstructorId.Value}:{date}";
-            
-            // Fire and forget invalidation
-            _redis.GetDatabase().KeyDelete(key, CommandFlags.FireAndForget);
+            var date = DateOnly.FromDateTime(slot.StartedAt.DateTime);
+            _availabilityCache.InvalidateAsync(slot.InstructorId.Value, date).GetAwaiter().GetResult();
         }
     }
 }

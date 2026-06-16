@@ -39,6 +39,9 @@ public static class DependencyInjection
             ConnectionMultiplexer.Connect(redisConnectionString));
             
         services.AddSingleton<ISchedulingLockService, RedisLockService>();
+        
+        services.AddScoped<IAvailabilityCacheService, AvailabilityCacheService>();
+        services.AddSingleton<ITenantCacheService, TenantCacheService>();
             
         return services;
     }

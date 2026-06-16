@@ -75,4 +75,38 @@ public class TenantRegistry : ITenantRegistry
             if (wasClosed) await connection.CloseAsync();
         }
     }
+
+    public async Task<TenantRecord?> GetByIdAsync(Guid id, CancellationToken ct = default)
+    {
+        var connection = _context.Database.GetDbConnection();
+        var wasClosed = connection.State == ConnectionState.Closed;
+        if (wasClosed) await connection.OpenAsync(ct);
+
+        try
+        {
+            using var command = connection.CreateCommand();
+            command.CommandText = "SELECT id, slug, schema_name, status FROM public.tenants WHERE id = @id LIMIT 1;";
+            
+            var param = command.CreateParameter();
+            param.ParameterName = "@id";
+            param.Value = id;
+            command.Parameters.Add(param);
+
+            using var reader = await command.ExecuteReaderAsync(ct);
+            if (await reader.ReadAsync(ct))
+            {
+                return new TenantRecord(
+                    reader.GetGuid(0),
+                    reader.GetString(1),
+                    reader.GetString(2),
+                    reader.GetString(3)
+                );
+            }
+            return null;
+        }
+        finally
+        {
+            if (wasClosed) await connection.CloseAsync();
+        }
+    }
 }

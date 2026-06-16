@@ -12,6 +12,8 @@ public interface ITenantCacheService
 {
     Task<TenantCacheItem?> GetAsync(string slug, CancellationToken cancellationToken = default);
     Task SetAsync(string slug, TenantCacheItem tenantContext, CancellationToken cancellationToken = default);
+    Task<TenantCacheItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task SetByIdAsync(Guid id, TenantCacheItem tenantContext, CancellationToken cancellationToken = default);
 }
 
 public class TenantCacheService : ITenantCacheService
@@ -40,6 +42,25 @@ public class TenantCacheService : ITenantCacheService
     {
         var db = _redis.GetDatabase();
         var key = RedisKeys.TenantResolution(_env, slug);
+        var json = JsonSerializer.Serialize(tenantContext);
+        await db.StringSetAsync(key, json, TimeSpan.FromSeconds(300));
+    }
+
+    public async Task<TenantCacheItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var db = _redis.GetDatabase();
+        var key = $"cfchub:{_env}:tenant:id:{id:N}";
+        var val = await db.StringGetAsync(key);
+
+        if (!val.HasValue) return null;
+
+        return JsonSerializer.Deserialize<TenantCacheItem>(val.ToString());
+    }
+
+    public async Task SetByIdAsync(Guid id, TenantCacheItem tenantContext, CancellationToken cancellationToken = default)
+    {
+        var db = _redis.GetDatabase();
+        var key = $"cfchub:{_env}:tenant:id:{id:N}";
         var json = JsonSerializer.Serialize(tenantContext);
         await db.StringSetAsync(key, json, TimeSpan.FromSeconds(300));
     }

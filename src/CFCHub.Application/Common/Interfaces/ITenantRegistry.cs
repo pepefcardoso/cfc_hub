@@ -10,4 +10,5 @@ public interface ITenantRegistry
 {
     Task<bool> IsSlugUniqueAsync(string slug, CancellationToken ct = default);
     Task<TenantRecord?> GetBySlugAsync(string slug, CancellationToken ct = default);
+    Task<TenantRecord?> GetByIdAsync(Guid id, CancellationToken ct = default);
 }

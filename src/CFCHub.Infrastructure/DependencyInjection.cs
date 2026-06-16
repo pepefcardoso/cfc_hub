@@ -52,6 +52,9 @@ public static class DependencyInjection
         services.AddSingleton<CFCHub.Application.Common.Security.ISecretsManagerService, CFCHub.Infrastructure.Security.SecretsManagerService>();
         services.AddSingleton<CFCHub.Application.Common.Security.IDataProtectionService, CFCHub.Infrastructure.Security.DataProtectionService>();
             
+        services.AddScoped<CFCHub.Infrastructure.Identity.IJwtValidationService, CFCHub.Infrastructure.Identity.JwtValidationService>();
+        services.AddScoped<ICurrentUserService, CFCHub.Infrastructure.Identity.CurrentUserService>();
+            
         return services;
     }
 }

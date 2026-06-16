@@ -21,5 +21,6 @@
     <PackageReference Include="AWSSDK.SimpleEmail" />
     <PackageReference Include="AWSSDK.SecretsManager" />
     <PackageReference Include="QuestPDF" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
   </ItemGroup>
 </Project>

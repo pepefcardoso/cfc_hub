@@ -17,7 +17,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CFCHub.Infrastructure.Persistence;
 
-public class AppDbContext : DbContext
+public class AppDbContext : DbContext, IUnitOfWork
 {
     private readonly ITenantContext _tenantContext;
     private readonly ISystemClock _clock;
@@ -101,5 +101,20 @@ public class AppDbContext : DbContext
                     break;
             }
         }
+    }
+
+    public Task BeginTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        return Database.BeginTransactionAsync(cancellationToken);
+    }
+
+    public Task CommitTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        return Database.CommitTransactionAsync(cancellationToken);
+    }
+
+    public Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        return Database.RollbackTransactionAsync(cancellationToken);
     }
 }

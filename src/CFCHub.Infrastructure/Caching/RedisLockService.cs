@@ -73,4 +73,12 @@ public sealed class RedisLockService : ISchedulingLockService
 
         return true;
     }
+
+    public async Task ReleaseAllAsync(IEnumerable<string> keys, CancellationToken ct)
+    {
+        foreach (var key in keys)
+        {
+            await ReleaseAsync(key, ct);
+        }
+    }
 }

@@ -11,8 +11,9 @@ public interface ISchedulingRepository
 {
     Task<SchedulingSlot?> GetSlotByIdAsync(SchedulingSlotId id, CancellationToken ct);
     
-    Task<SchedulingSlot?> GetOverlappingSlotAsync(InstructorId instructorId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct);
-    
+    Task<SchedulingSlot?> GetOverlappingInstructorSlotAsync(InstructorId instructorId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct);
+    Task<SchedulingSlot?> GetOverlappingVehicleSlotAsync(VehicleId vehicleId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct);
+    Task<SchedulingSlot?> GetOverlappingTrackSlotAsync(TrackId trackId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct);
     Task AddAsync(SchedulingSlot slot, CancellationToken ct);
     
     Task<IReadOnlyCollection<Projections.SlotProjection>> GetByInstructorAsync(InstructorId instructorId, DateOnly date, CancellationToken ct);

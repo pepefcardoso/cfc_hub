@@ -23,6 +23,9 @@ public static class DependencyInjection
         
         services.AddSingleton<AuditInterceptor>();
         
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AppDbContext>());
+        services.AddScoped<IOutboxService, CFCHub.Infrastructure.Outbox.OutboxService>();
+        
         services.AddDbContext<AppDbContext>((sp, options) =>
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection") 

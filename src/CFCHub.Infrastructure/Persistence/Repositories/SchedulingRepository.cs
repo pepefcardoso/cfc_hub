@@ -26,14 +26,30 @@ public class SchedulingRepository : ISchedulingRepository
             .FirstOrDefaultAsync(s => s.Id == id, ct);
     }
 
-    public async Task<SchedulingSlot?> GetOverlappingSlotAsync(InstructorId instructorId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct)
+    public async Task<SchedulingSlot?> GetOverlappingInstructorSlotAsync(InstructorId instructorId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct)
     {
-        // PostgreSQL SELECT FOR UPDATE locks the row. EF Core translates FromSqlRaw correctly.
-        // We use string interpolation or FromSqlRaw with parameters.
         return await _context.Set<SchedulingSlot>()
             .FromSqlRaw(
-                "SELECT * FROM \"SchedulingSlots\" WHERE \"InstructorId\" = {0} AND \"StartedAt\" < {1} AND \"EndedAt\" > {2} FOR UPDATE", 
+                "SELECT * FROM \"SchedulingSlots\" WHERE \"InstructorId\" = {0} AND \"StartedAt\" < {1} AND \"EndedAt\" > {2} AND \"Status\" != 1 FOR UPDATE", 
                 instructorId.Value, end, start)
+            .FirstOrDefaultAsync(ct);
+    }
+
+    public async Task<SchedulingSlot?> GetOverlappingVehicleSlotAsync(VehicleId vehicleId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct)
+    {
+        return await _context.Set<SchedulingSlot>()
+            .FromSqlRaw(
+                "SELECT * FROM \"SchedulingSlots\" WHERE \"VehicleId\" = {0} AND \"StartedAt\" < {1} AND \"EndedAt\" > {2} AND \"Status\" != 1 FOR UPDATE", 
+                vehicleId.Value, end, start)
+            .FirstOrDefaultAsync(ct);
+    }
+
+    public async Task<SchedulingSlot?> GetOverlappingTrackSlotAsync(TrackId trackId, DateTimeOffset start, DateTimeOffset end, CancellationToken ct)
+    {
+        return await _context.Set<SchedulingSlot>()
+            .FromSqlRaw(
+                "SELECT * FROM \"SchedulingSlots\" WHERE \"TrackId\" = {0} AND \"StartedAt\" < {1} AND \"EndedAt\" > {2} AND \"Status\" != 1 FOR UPDATE", 
+                trackId.Value, end, start)
             .FirstOrDefaultAsync(ct);
     }
 

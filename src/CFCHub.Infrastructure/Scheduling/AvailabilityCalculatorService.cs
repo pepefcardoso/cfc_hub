@@ -38,7 +38,7 @@ public class AvailabilityCalculatorService : IAvailabilityCalculatorService
 
         if (instructorId != null)
         {
-            var cached = await _cacheService.GetAsync(instructorId.Value.Value, date, ct);
+            var cached = await _cacheService.GetAsync(instructorId.Value, date, ct);
             if (cached != null)
             {
                 // We got it from cache, we can skip ALL db queries

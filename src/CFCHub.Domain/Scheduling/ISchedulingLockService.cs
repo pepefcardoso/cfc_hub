@@ -9,4 +9,5 @@ public interface ISchedulingLockService
     Task<bool> TryAcquireAsync(string key, CancellationToken ct);
     Task ReleaseAsync(string key, CancellationToken ct);
     Task<bool> AcquireAllAsync(IEnumerable<string> keys, CancellationToken ct);
+    Task ReleaseAllAsync(IEnumerable<string> keys, CancellationToken ct);
 }

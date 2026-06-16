@@ -20,6 +20,8 @@ using (var scope = app.Services.CreateScope())
     await orchestrator.InitializeAsync();
 }
 
+app.UseMiddleware<CFCHub.Api.Middleware.SecurityHeadersMiddleware>();
+app.UseMiddleware<CFCHub.Api.Middleware.GlobalExceptionMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.TenantResolutionMiddleware>();
 
 app.Run();

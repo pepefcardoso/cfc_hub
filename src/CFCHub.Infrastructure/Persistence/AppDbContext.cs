@@ -46,6 +46,7 @@ public class AppDbContext : DbContext
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
     public DbSet<StaffUser> StaffUsers => Set<StaffUser>();
     public DbSet<DataErasureRequest> DataErasureRequests => Set<DataErasureRequest>();
+    public DbSet<CFCHub.Infrastructure.Email.EmailDeliveryLog> EmailDeliveryLogs => Set<CFCHub.Infrastructure.Email.EmailDeliveryLog>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

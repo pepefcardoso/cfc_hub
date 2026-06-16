@@ -15,7 +15,7 @@ public interface ISchedulingRepository
     
     Task AddAsync(SchedulingSlot slot, CancellationToken ct);
     
-    Task<IReadOnlyCollection<SchedulingSlot>> GetByInstructorAsync(InstructorId instructorId, DateOnly date, CancellationToken ct);
+    Task<IReadOnlyCollection<Projections.SlotProjection>> GetByInstructorAsync(InstructorId instructorId, DateOnly date, CancellationToken ct);
     
-    Task<PagedResult<SchedulingSlot>> GetByStudentAsync(StudentId studentId, string? cursor, int limit, CancellationToken ct);
+    Task<PagedResult<Projections.SlotProjection>> GetByStudentAsync(StudentId studentId, string? cursor, int limit, CancellationToken ct);
 }

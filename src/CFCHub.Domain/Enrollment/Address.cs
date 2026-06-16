@@ -26,6 +26,10 @@ public class Address : ValueObject
         ZipCode = zipCode;
     }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Address() { }
+#pragma warning restore CS8618
+
     protected override IEnumerable<object?> GetEqualityComponents()
     {
         yield return Street;

@@ -1,6 +1,6 @@
 using System;
 
-namespace CFCHub.Api.Logging;
+namespace CFCHub.Domain.Shared;
 
 [AttributeUsage(AttributeTargets.Property)]
 public class SensitiveAttribute : Attribute

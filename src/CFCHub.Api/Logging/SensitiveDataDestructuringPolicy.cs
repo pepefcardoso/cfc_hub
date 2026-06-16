@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Serilog.Core;
 using Serilog.Events;
+using CFCHub.Domain.Shared;
 
 namespace CFCHub.Api.Logging;
 

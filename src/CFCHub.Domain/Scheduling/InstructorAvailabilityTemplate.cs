@@ -14,6 +14,10 @@ public class InstructorAvailabilityTemplate : ValueObject
         Windows = windows.ToList().AsReadOnly();
     }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private InstructorAvailabilityTemplate() { }
+#pragma warning restore CS8618
+
     protected override IEnumerable<object?> GetEqualityComponents()
     {
         foreach (var window in Windows.OrderBy(w => w.DayOfWeek).ThenBy(w => w.Start))
@@ -38,6 +42,10 @@ public class AvailabilityWindow : ValueObject
         Start = start;
         End = end;
     }
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private AvailabilityWindow() { }
+#pragma warning restore CS8618
 
     protected override IEnumerable<object?> GetEqualityComponents()
     {

@@ -10,12 +10,19 @@ namespace CFCHub.Domain.Enrollment;
 
 public class Student : AggregateRoot<StudentId>, ISoftDeletable, IAuditable
 {
+    [Sensitive]
     public string Name { get; private set; }
+    [Sensitive]
     public string Cpf { get; private set; }
+    [Sensitive]
     public string? Rg { get; private set; }
+    [Sensitive]
     public string Email { get; private set; }
+    [Sensitive]
     public string Phone { get; private set; }
+    [Sensitive]
     public DateOnly BirthDate { get; private set; }
+    [Sensitive]
     public Address HomeAddress { get; private set; }
     
     public StudentStatus Status { get; private set; }

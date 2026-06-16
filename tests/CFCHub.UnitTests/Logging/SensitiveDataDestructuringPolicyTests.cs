@@ -6,6 +6,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Core;
 using Xunit;
+using CFCHub.Domain.Shared;
 
 namespace CFCHub.UnitTests.Logging;
 

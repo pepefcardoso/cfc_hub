@@ -16,10 +16,17 @@ public class Money : ValueObject, IComparable<Money>
         {
             throw new UnprocessableException("Money amount cannot be negative.");
         }
-        
+
+        if (string.IsNullOrWhiteSpace(currency))
+            throw new ArgumentException("Currency must be specified", nameof(currency));
+
         Amount = amount;
-        Currency = currency;
+        Currency = currency.ToUpperInvariant();
     }
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Money() { }
+#pragma warning restore CS8618
 
     protected override IEnumerable<object?> GetEqualityComponents()
     {

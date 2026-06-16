@@ -43,6 +43,7 @@ public static class DependencyInjection
         services.AddSingleton<ISchedulingLockService, RedisLockService>();
         
         services.AddScoped<IAvailabilityCacheService, AvailabilityCacheService>();
+        services.AddScoped<IAvailabilityCalculatorService, CFCHub.Infrastructure.Scheduling.AvailabilityCalculatorService>();
         services.AddSingleton<ITenantCacheService, TenantCacheService>();
         
         services.AddSingleton<CFCHub.Application.Common.Security.ISecretsManagerService, CFCHub.Infrastructure.Security.SecretsManagerService>();

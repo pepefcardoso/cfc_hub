@@ -50,6 +50,13 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
             a.Property(p => p.ZipCode).HasColumnName("home_zip");
         });
 
+        builder.Property<string>("CpfHash")
+            .HasColumnName("cpf_hash")
+            .HasMaxLength(64)
+            .IsRequired();
+
+        builder.HasIndex("CpfHash").IsUnique();
+
         // Global soft-delete filter is handled by AppDbContext for ISoftDeletable entities
         // builder.HasQueryFilter(x => x.DeletedAt == null);
         

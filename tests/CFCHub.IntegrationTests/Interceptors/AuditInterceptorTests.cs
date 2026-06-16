@@ -28,6 +28,7 @@ public class AuditInterceptorTests : IAsyncLifetime
     private ITenantContext _tenantContext = null!;
     private ISystemClock _clock = null!;
     private IConnectionMultiplexer _redis = null!;
+    private CFCHub.Infrastructure.Caching.IAvailabilityCacheService _availabilityCache = null!;
 
     public async Task InitializeAsync()
     {
@@ -53,7 +54,9 @@ public class AuditInterceptorTests : IAsyncLifetime
         var db = Substitute.For<IDatabase>();
         _redis.GetDatabase(Arg.Any<int>(), Arg.Any<object>()).Returns(db);
 
-        var interceptor = new AuditInterceptor(_tenantContext, _currentUserService, _clock, _redis);
+        _availabilityCache = Substitute.For<CFCHub.Infrastructure.Caching.IAvailabilityCacheService>();
+
+        var interceptor = new AuditInterceptor(_tenantContext, _currentUserService, _clock, _redis, _availabilityCache);
 
         var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>()
             .UseNpgsql(_dbContainer.GetConnectionString())

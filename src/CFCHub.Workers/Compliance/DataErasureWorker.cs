@@ -150,6 +150,10 @@ public class DataErasureWorker : LeasedBackgroundService
         await transaction.CommitAsync(ct);
     }
 
+    protected virtual IAmazonSecurityTokenService CreateStsClient() => new AmazonSecurityTokenServiceClient();
+    
+    protected virtual IAmazonS3 CreateS3Client(AWSCredentials credentials) => new AmazonS3Client(credentials);
+
     private async Task DeleteS3MedicalFilesAsync(string tenantSlug, string studentId, ILogger logger, CancellationToken ct)
     {
         var roleArn = Environment.GetEnvironmentVariable("CFCHUB_MEDICAL_ERASURE_ROLE_ARN");
@@ -163,7 +167,7 @@ public class DataErasureWorker : LeasedBackgroundService
 
         try
         {
-            using var stsClient = new AmazonSecurityTokenServiceClient();
+            using var stsClient = CreateStsClient();
             var assumeRoleResponse = await stsClient.AssumeRoleAsync(new AssumeRoleRequest
             {
                 RoleArn = roleArn,
@@ -175,7 +179,7 @@ public class DataErasureWorker : LeasedBackgroundService
                 assumeRoleResponse.Credentials.SecretAccessKey,
                 assumeRoleResponse.Credentials.SessionToken);
 
-            using var s3Client = new AmazonS3Client(credentials);
+            using var s3Client = CreateS3Client(credentials);
             
             var prefix = $"medical/{tenantSlug}/{studentId}/";
 

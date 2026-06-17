@@ -20,6 +20,7 @@ builder.Services.AddScoped<IOutboxMessageDispatcher, OutboxMessageDispatcher>();
 builder.Services.AddHostedService<OutboxWorker>();
 builder.Services.AddHostedService<DocumentExpiryWorker>();
 builder.Services.AddHostedService<SlotReminderWorker>();
+builder.Services.AddHostedService<DataErasureWorker>();
 
 builder.Services.AddOpenTelemetry()
     .ConfigureResource(resource => resource.AddService("CFCHub.Workers"))

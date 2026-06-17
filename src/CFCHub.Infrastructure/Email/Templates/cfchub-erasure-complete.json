@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "cfchub-erasure-complete",
+    "SubjectPart": "Confirmação de Exclusão de Dados (LGPD)",
+    "HtmlPart": "<p>Olá,</p><p>A sua solicitação de exclusão de dados sob o número de referência <strong>{{reference_number}}</strong> foi concluída com sucesso de acordo com a LGPD.</p><p>Atenciosamente,<br>Equipe CFCHub</p>",
+    "TextPart": "Olá,\n\nA sua solicitação de exclusão de dados sob o número de referência {{reference_number}} foi concluída com sucesso de acordo com a LGPD.\n\nAtenciosamente,\nEquipe CFCHub"
+  }
+}

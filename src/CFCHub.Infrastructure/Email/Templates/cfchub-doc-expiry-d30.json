@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "cfchub-doc-expiry-d30",
+    "SubjectPart": "Aviso: Documento expira em 30 dias",
+    "HtmlPart": "<p>Olá {{name}},</p><p>Gostaríamos de informar que o seu documento (Referência: <strong>{{document_reference}}</strong>) irá expirar em 30 dias, na data <strong>{{expiry_date}}</strong>.</p><p>Por favor, providencie a renovação o quanto antes.</p><p>Atenciosamente,<br>Equipe CFCHub</p>",
+    "TextPart": "Olá {{name}},\n\nGostaríamos de informar que o seu documento (Referência: {{document_reference}}) irá expirar em 30 dias, na data {{expiry_date}}.\n\nPor favor, providencie a renovação o quanto antes.\n\nAtenciosamente,\nEquipe CFCHub"
+  }
+}

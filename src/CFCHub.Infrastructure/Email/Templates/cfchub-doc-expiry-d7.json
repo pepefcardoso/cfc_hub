@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "cfchub-doc-expiry-d7",
+    "SubjectPart": "Atenção: Documento expira em 7 dias",
+    "HtmlPart": "<p>Olá {{name}},</p><p>Atenção! O seu documento (Referência: <strong>{{document_reference}}</strong>) irá expirar em apenas 7 dias (<strong>{{expiry_date}}</strong>).</p><p>A não renovação poderá impactar suas aulas.</p><p>Atenciosamente,<br>Equipe CFCHub</p>",
+    "TextPart": "Olá {{name}},\n\nAtenção! O seu documento (Referência: {{document_reference}}) irá expirar em apenas 7 dias ({{expiry_date}}).\n\nA não renovação poderá impactar suas aulas.\n\nAtenciosamente,\nEquipe CFCHub"
+  }
+}

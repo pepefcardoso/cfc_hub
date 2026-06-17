@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "cfchub-payment-receipt",
+    "SubjectPart": "Recibo de Pagamento - CFCHub",
+    "HtmlPart": "<p>Olá {{name}},</p><p>Confirmamos o recebimento do seu pagamento referente à fatura <strong>{{invoice_number}}</strong>.</p><p>Você pode baixar o recibo completo através do link abaixo:</p><p><a href=\"{{receipt_url}}\">Baixar Recibo</a></p><p>Atenciosamente,<br>Equipe CFCHub</p>",
+    "TextPart": "Olá {{name}},\n\nConfirmamos o recebimento do seu pagamento referente à fatura {{invoice_number}}.\n\nVocê pode baixar o recibo completo através do link abaixo:\n{{receipt_url}}\n\nAtenciosamente,\nEquipe CFCHub"
+  }
+}

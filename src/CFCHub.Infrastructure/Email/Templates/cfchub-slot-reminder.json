@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "cfchub-slot-reminder",
+    "SubjectPart": "Lembrete de Aula: {{class_date}} às {{class_time}}",
+    "HtmlPart": "<p>Olá {{name}},</p><p>Este é um lembrete da sua aula agendada para <strong>{{class_date}}</strong> às <strong>{{class_time}}</strong>.</p><p>Por favor, chegue com 15 minutos de antecedência.</p><p>Atenciosamente,<br>Equipe CFCHub</p>",
+    "TextPart": "Olá {{name}},\n\nEste é um lembrete da sua aula agendada para {{class_date}} às {{class_time}}.\n\nPor favor, chegue com 15 minutos de antecedência.\n\nAtenciosamente,\nEquipe CFCHub"
+  }
+}

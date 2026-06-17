@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "cfchub-welcome",
+    "SubjectPart": "Bem-vindo ao CFCHub, {{name}}!",
+    "HtmlPart": "<p>Olá {{name}},</p><p>Bem-vindo ao CFCHub! Seu cadastro foi realizado com sucesso.</p><p>Para acessar a plataforma, clique no link abaixo:</p><p><a href=\"{{login_url}}\">Acessar CFCHub</a></p><p>Atenciosamente,<br>Equipe CFCHub</p>",
+    "TextPart": "Olá {{name}},\n\nBem-vindo ao CFCHub! Seu cadastro foi realizado com sucesso.\n\nPara acessar a plataforma, visite: {{login_url}}\n\nAtenciosamente,\nEquipe CFCHub"
+  }
+}

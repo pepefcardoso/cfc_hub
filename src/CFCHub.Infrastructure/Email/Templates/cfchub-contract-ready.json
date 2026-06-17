@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "cfchub-contract-ready",
+    "SubjectPart": "Seu contrato está pronto para assinatura",
+    "HtmlPart": "<p>Olá {{name}},</p><p>Seu contrato já está disponível para revisão e assinatura.</p><p>Acesse o link seguro abaixo para visualizá-lo e assiná-lo digitalmente:</p><p><a href=\"{{contract_url}}\">Acessar Contrato</a></p><p>Este link expirará em breve por motivos de segurança.</p><p>Atenciosamente,<br>Equipe CFCHub</p>",
+    "TextPart": "Olá {{name}},\n\nSeu contrato já está disponível para revisão e assinatura.\n\nAcesse o link seguro abaixo para visualizá-lo e assiná-lo digitalmente:\n{{contract_url}}\n\nEste link expirará em breve por motivos de segurança.\n\nAtenciosamente,\nEquipe CFCHub"
+  }
+}

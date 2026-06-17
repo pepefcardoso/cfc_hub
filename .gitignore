@@ -483,6 +483,7 @@ $RECYCLE.BIN/
 
 # Terraform
 **/.terraform/*
+**/.terraform/
 *.tfstate
 *.tfstate.*
 crash.log
@@ -492,11 +493,6 @@ override.tf.json
 *_override.tf.json
 
 # Terraform CLI binaries
-terraform.exe
-terraform
-
-terraform.zip
-terraform.exe
-**/.terraform/
-*.tfstate
-*.tfstate.*
+/terraform
+/terraform.exe
+/terraform.zip

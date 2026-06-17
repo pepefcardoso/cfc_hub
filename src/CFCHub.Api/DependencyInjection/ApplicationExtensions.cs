@@ -1,21 +1,21 @@
 using CFCHub.Application.Common.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
-namespace CFCHub.Application;
+namespace CFCHub.Api.DependencyInjection;
 
-public static class DependencyInjection
+public static class ApplicationExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        var assembly = Assembly.GetExecutingAssembly();
+        // Get the assembly where Application classes are located, e.g. using a known type
+        var applicationAssembly = typeof(CFCHub.Application.Common.Interfaces.IUnitOfWork).Assembly;
 
-        services.AddValidatorsFromAssembly(assembly);
+        services.AddValidatorsFromAssembly(applicationAssembly);
 
         services.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssembly(assembly);
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
             
             cfg.AddBehavior(typeof(MediatR.IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             cfg.AddBehavior(typeof(MediatR.IPipelineBehavior<,>), typeof(TenantBehavior<,>));

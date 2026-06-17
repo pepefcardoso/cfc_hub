@@ -480,3 +480,23 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI binaries
+terraform.exe
+terraform
+
+terraform.zip
+terraform.exe
+**/.terraform/
+*.tfstate
+*.tfstate.*

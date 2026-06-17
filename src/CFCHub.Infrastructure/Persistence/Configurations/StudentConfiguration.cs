@@ -57,6 +57,8 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
 
         builder.HasIndex("CpfHash").IsUnique();
 
+        builder.HasIndex(x => x.CreatedAt);
+
         // Global soft-delete filter is handled by AppDbContext for ISoftDeletable entities
         // builder.HasQueryFilter(x => x.DeletedAt == null);
         

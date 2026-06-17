@@ -52,6 +52,8 @@ public class SchedulingSlotConfiguration : IEntityTypeConfiguration<SchedulingSl
 
         builder.Property(x => x.ReminderSentAt);
 
+        builder.HasIndex(x => new { x.StartedAt, x.Category, x.Status });
+
         builder.Ignore(x => x.DomainEvents);
 
         // Exclusion constraints added via migrationBuilder.Sql(...) in migration

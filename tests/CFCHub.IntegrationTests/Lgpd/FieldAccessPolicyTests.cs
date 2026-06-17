@@ -10,6 +10,7 @@ using CFCHub.IntegrationTests.Common;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
+using Microsoft.AspNetCore.TestHost;
 using Xunit;
 
 namespace CFCHub.IntegrationTests.Lgpd;

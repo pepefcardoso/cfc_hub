@@ -17,7 +17,7 @@ namespace CFCHub.IntegrationTests.Common;
 
 public abstract class IntegrationTestBase : IClassFixture<IntegrationTestFixture>, IAsyncLifetime
 {
-    private readonly IntegrationTestFixture _fixture;
+    protected readonly IntegrationTestFixture _fixture;
     
     protected HttpClient Client = null!;
     protected string TenantSchema { get; } = $"cfc_test_{Guid.NewGuid():N}";
@@ -33,7 +33,7 @@ public abstract class IntegrationTestBase : IClassFixture<IntegrationTestFixture
         _fixture = fixture;
     }
 
-    public async Task InitializeAsync()
+    public virtual async Task InitializeAsync()
     {
         // For each test, we create a specialized factory with our specific schema context
         var customizedFactory = _fixture.Factory.WithWebHostBuilder(builder =>

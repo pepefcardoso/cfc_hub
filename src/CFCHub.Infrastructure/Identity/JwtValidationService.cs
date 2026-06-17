@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CFCHub.Application.Common.Security;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Logging;
 
 namespace CFCHub.Infrastructure.Identity;
 
@@ -17,11 +18,13 @@ public interface IJwtValidationService
 public class JwtValidationService : IJwtValidationService
 {
     private readonly ISecretsManagerService _secretsManager;
+    private readonly ILogger<JwtValidationService> _logger;
     private const string PublicKeyArn = "CFCHUB_JWT_PUBLIC_KEY_ARN";
 
-    public JwtValidationService(ISecretsManagerService secretsManager)
+    public JwtValidationService(ISecretsManagerService secretsManager, ILogger<JwtValidationService> logger)
     {
         _secretsManager = secretsManager;
+        _logger = logger;
     }
 
     public async Task<ClaimsPrincipal?> ValidateTokenAsync(string token, CancellationToken ct = default)
@@ -49,8 +52,9 @@ public class JwtValidationService : IJwtValidationService
             var principal = handler.ValidateToken(token, validationParameters, out var validatedToken);
             return principal;
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.LogWarning(ex, "Failed to validate JWT token");
             return null;
         }
     }

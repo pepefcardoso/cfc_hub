@@ -45,6 +45,11 @@ builder.Services.AddOpenTelemetry()
 
 CFCHub.Workers.Pdf.PdfConfiguration.Configure();
 builder.Services.AddScoped<IOutboxMessageHandler<CFCHub.Workers.Outbox.Handlers.ContractGenerationRequested>, CFCHub.Workers.Outbox.Handlers.ContractGenerationHandler>();
+builder.Services.AddScoped<IOutboxMessageHandler<CFCHub.Workers.Outbox.Handlers.WelcomeEmailRequested>, CFCHub.Workers.Outbox.Handlers.WelcomeEmailHandler>();
+builder.Services.AddScoped<IOutboxMessageHandler<CFCHub.Workers.Outbox.Handlers.SlotReminderRequested>, CFCHub.Workers.Outbox.Handlers.SlotReminderHandler>();
+builder.Services.AddScoped<IOutboxMessageHandler<CFCHub.Workers.Outbox.Handlers.PaymentReceiptRequested>, CFCHub.Workers.Outbox.Handlers.PaymentReceiptHandler>();
+builder.Services.AddScoped<IOutboxMessageHandler<CFCHub.Workers.Outbox.Handlers.DocumentExpiryAlertRequested>, CFCHub.Workers.Outbox.Handlers.DocumentExpiryAlertHandler>();
+builder.Services.AddScoped<IOutboxMessageHandler<CFCHub.Workers.Outbox.Handlers.ErasureNotificationRequested>, CFCHub.Workers.Outbox.Handlers.ErasureNotificationHandler>();
 
 var host = builder.Build();
 namespace CFCHub.Workers { public partial class Program { } }

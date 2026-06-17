@@ -8,6 +8,7 @@
     <ProjectReference Include="..\..\src\CFCHub.Application\CFCHub.Application.csproj" />
     <ProjectReference Include="..\..\src\CFCHub.Domain\CFCHub.Domain.csproj" />
     <ProjectReference Include="..\..\src\CFCHub.Api\CFCHub.Api.csproj" />
+    <ProjectReference Include="..\..\src\CFCHub.Workers\CFCHub.Workers.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Serilog" />

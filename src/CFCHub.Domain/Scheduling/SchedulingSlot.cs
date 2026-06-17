@@ -83,6 +83,11 @@ public sealed class SchedulingSlot : AggregateRoot<SchedulingSlotId>
         {
             throw new UnprocessableException("Cannot cancel a completed slot.", "SLOT_ALREADY_COMPLETED");
         }
+        
+        if (Status == SlotStatus.Cancelled)
+        {
+            throw new UnprocessableException("Cannot cancel an already cancelled slot.", "SLOT_ALREADY_CANCELLED");
+        }
 
         Status = SlotStatus.Cancelled;
         CancellationReason = reason;

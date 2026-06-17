@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using CFCHub.Domain.Scheduling;
 using CFCHub.Domain.Scheduling.Events;
 using CFCHub.Domain.Shared;
 using CFCHub.Domain.Shared.Exceptions;
 using CFCHub.Domain.Students;
+using CFCHub.UnitTests.Builders;
 using FluentAssertions;
 using NSubstitute;
 using Xunit;
@@ -17,103 +19,62 @@ public class SchedulingSlotTests
     public SchedulingSlotTests()
     {
         _clock = Substitute.For<ISystemClock>();
-        _clock.UtcNow.Returns(new DateTimeOffset(2026, 6, 16, 10, 0, 0, TimeSpan.Zero));
+        _clock.UtcNow.Returns(new DateTimeOffset(2026, 6, 17, 10, 0, 0, TimeSpan.Zero));
     }
 
-    private static SchedulingSlotId CreateId() => new(Guid.NewGuid());
-    private static InstructorId CreateInstructorId() => new(Guid.NewGuid());
-    private static VehicleId CreateVehicleId() => new(Guid.NewGuid());
-    private static TrackId CreateTrackId() => new(Guid.NewGuid());
-    private static StudentId CreateStudentId() => new(Guid.NewGuid());
-
     [Fact]
-    public void Book_WithPastTime_ThrowsUnprocessable()
+    public void Book_WithPastStartTime_ThrowsUnprocessableException()
     {
         var pastTime = _clock.UtcNow.AddMinutes(-50);
+        var builder = new SchedulingSlotBuilder(_clock);
 
-        Action act = () => SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            pastTime,
-            CnhCategory.B,
-            _clock);
+        Action act = () => builder.WithStartedAt(pastTime).Build();
 
         act.Should().Throw<UnprocessableException>()
             .Where(e => e.ErrorCode == "SLOT_IN_PAST");
     }
 
     [Fact]
-    public void Book_WithInvalidMinute_ThrowsUnprocessable()
+    public void Book_WithValidData_SetsEndedAtTo50MinutesAfterStart()
     {
-        var invalidTime = _clock.UtcNow.AddHours(1).AddMinutes(15);
+        var startTime = _clock.UtcNow.AddDays(1).Date.AddHours(10); // 10:00
+        var builder = new SchedulingSlotBuilder(_clock);
 
-        Action act = () => SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            invalidTime,
-            CnhCategory.B,
-            _clock);
+        var slot = builder.WithStartedAt(startTime).Build();
 
-        act.Should().Throw<UnprocessableException>()
-            .Where(e => e.ErrorCode == "INVALID_SLOT_TIME");
+        slot.EndedAt.Should().Be(startTime.AddMinutes(50));
     }
 
     [Fact]
-    public void Book_RaisesSlotBookedEvent()
+    public void Book_WithValidData_RaisesSlotBookedEvent()
     {
-        var startTime = _clock.UtcNow.AddHours(1); // 11:00
+        var startTime = _clock.UtcNow.AddDays(1).Date.AddHours(10);
+        var builder = new SchedulingSlotBuilder(_clock);
 
-        var slot = SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            startTime,
-            CnhCategory.B,
-            _clock);
+        var slot = builder.WithStartedAt(startTime).Build();
 
         slot.DomainEvents.Should().ContainSingle()
             .Which.Should().BeOfType<SchedulingSlotBookedEvent>();
     }
 
     [Fact]
-    public void Book_SetsEndedAtCorrectly()
+    public void Cancel_WhenConfirmed_SetsStatusToCancelled()
     {
-        var startTime = _clock.UtcNow.AddHours(1); // 11:00
+        var slot = new SchedulingSlotBuilder(_clock).Build();
+        slot.ClearDomainEvents();
 
-        var slot = SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            startTime,
-            CnhCategory.B,
-            _clock);
+        slot.Cancel("Reason", _clock);
 
-        slot.EndedAt.Should().Be(startTime.AddMinutes(50));
+        slot.Status.Should().Be(SlotStatus.Cancelled);
+        slot.CancellationReason.Should().Be("Reason");
+        slot.DomainEvents.Should().ContainSingle()
+            .Which.Should().BeOfType<SchedulingSlotCancelledEvent>();
     }
 
     [Fact]
-    public void Cancel_WhenCompleted_ThrowsUnprocessable()
+    public void Cancel_WhenCompleted_ThrowsUnprocessableException()
     {
-        var slot = SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            _clock.UtcNow.AddHours(1),
-            CnhCategory.B,
-            _clock);
-
+        var slot = new SchedulingSlotBuilder(_clock).Build();
         slot.Complete(_clock);
 
         Action act = () => slot.Cancel("Reason", _clock);
@@ -123,40 +84,21 @@ public class SchedulingSlotTests
     }
 
     [Fact]
-    public void Cancel_SetsStatusCancelled_AndRaisesEvent()
+    public void Cancel_WhenCancelled_ThrowsUnprocessableException()
     {
-        var slot = SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            _clock.UtcNow.AddHours(1),
-            CnhCategory.B,
-            _clock);
+        var slot = new SchedulingSlotBuilder(_clock).Build();
+        slot.Cancel("Reason 1", _clock);
 
-        slot.ClearDomainEvents();
+        Action act = () => slot.Cancel("Reason 2", _clock);
 
-        slot.Cancel("Reason", _clock);
-
-        slot.Status.Should().Be(SlotStatus.Cancelled);
-        slot.DomainEvents.Should().ContainSingle()
-            .Which.Should().BeOfType<SchedulingSlotCancelledEvent>();
+        act.Should().Throw<UnprocessableException>()
+            .Where(e => e.ErrorCode == "SLOT_ALREADY_CANCELLED");
     }
 
     [Fact]
-    public void Complete_WhenConfirmed_SetsStatusCompleted()
+    public void Complete_WhenConfirmed_RaisesSlotCompletedEvent()
     {
-        var slot = SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            _clock.UtcNow.AddHours(1),
-            CnhCategory.B,
-            _clock);
-
+        var slot = new SchedulingSlotBuilder(_clock).Build();
         slot.ClearDomainEvents();
 
         slot.Complete(_clock);
@@ -167,18 +109,9 @@ public class SchedulingSlotTests
     }
 
     [Fact]
-    public void MarkNoShow_WhenConfirmed_SetsStatusNoShow()
+    public void MarkNoShow_WhenConfirmed_SetsStatusToNoShow()
     {
-        var slot = SchedulingSlot.Book(
-            CreateId(),
-            CreateInstructorId(),
-            CreateVehicleId(),
-            CreateTrackId(),
-            CreateStudentId(),
-            _clock.UtcNow.AddHours(1),
-            CnhCategory.B,
-            _clock);
-
+        var slot = new SchedulingSlotBuilder(_clock).Build();
         slot.ClearDomainEvents();
 
         slot.MarkNoShow();

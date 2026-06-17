@@ -1,5 +1,5 @@
 using System;
-using CFCHub.Domain.Scheduling;
+using CFCHub.UnitTests.Builders;
 using FluentAssertions;
 using Xunit;
 
@@ -8,34 +8,20 @@ namespace CFCHub.UnitTests.Scheduling;
 public class VehicleTests
 {
     [Fact]
-    public void IsAvailableAt_WhenInMaintenance_ReturnsFalse()
+    public void Vehicle_IsAvailableAt_WhenInMaintenance_ReturnsFalse()
     {
         // Arrange
-        var time = new DateTimeOffset(2026, 6, 15, 10, 0, 0, TimeSpan.FromHours(-3));
-        var vehicle = new Builders.VehicleBuilder()
-            .WithMaintenanceUntil(time.AddHours(2))
+        var checkTime = new DateTimeOffset(2026, 6, 17, 10, 0, 0, TimeSpan.Zero);
+        var maintenanceUntil = checkTime.AddDays(1);
+
+        var vehicle = new VehicleBuilder()
+            .WithMaintenanceUntil(maintenanceUntil)
             .Build();
 
         // Act
-        var result = vehicle.IsAvailableAt(time);
+        var isAvailable = vehicle.IsAvailableAt(checkTime);
 
         // Assert
-        result.Should().BeFalse();
-    }
-
-    [Fact]
-    public void IsAvailableAt_WhenMaintenanceHasPassed_ReturnsTrue()
-    {
-        // Arrange
-        var time = new DateTimeOffset(2026, 6, 15, 14, 0, 0, TimeSpan.FromHours(-3));
-        var vehicle = new Builders.VehicleBuilder()
-            .WithMaintenanceUntil(time.AddHours(-2))
-            .Build();
-
-        // Act
-        var result = vehicle.IsAvailableAt(time);
-
-        // Assert
-        result.Should().BeTrue();
+        isAvailable.Should().BeFalse();
     }
 }

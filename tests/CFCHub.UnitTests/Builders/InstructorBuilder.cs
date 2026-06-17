@@ -12,10 +12,17 @@ public class InstructorBuilder
     private CnhCategory[] _categories = { CnhCategory.B };
     private int _maxDailySlots = 8;
     private InstructorAvailabilityTemplate? _template;
+    private readonly System.Collections.Generic.List<DayAvailabilityOverride> _overrides = new();
 
     public InstructorBuilder WithTemplate(InstructorAvailabilityTemplate template)
     {
         _template = template;
+        return this;
+    }
+
+    public InstructorBuilder WithDayOverride(DayAvailabilityOverride dayOverride)
+    {
+        _overrides.Add(dayOverride);
         return this;
     }
 
@@ -25,6 +32,10 @@ public class InstructorBuilder
         if (_template != null)
         {
             instructor.SetAvailabilityTemplate(_template);
+        }
+        foreach (var overrideItem in _overrides)
+        {
+            instructor.AddDayOverride(overrideItem);
         }
         return instructor;
     }

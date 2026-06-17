@@ -32,6 +32,12 @@ public class RateLimitMiddleware
         var method = context.Request.Method;
         var path = context.Request.Path.Value ?? string.Empty;
 
+        if (path.StartsWith("/health", StringComparison.OrdinalIgnoreCase))
+        {
+            await _next(context);
+            return;
+        }
+
         int limit = 120;
         TimeSpan window = TimeSpan.FromMinutes(1);
 

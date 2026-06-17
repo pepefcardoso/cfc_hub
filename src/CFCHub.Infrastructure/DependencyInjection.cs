@@ -57,6 +57,11 @@ public static class DependencyInjection
         
         services.AddSingleton<IRateLimiter, RedisRateLimiter>();
             
+        services.AddHealthChecks()
+            .AddCheck<CFCHub.Infrastructure.Health.PostgreSqlHealthCheck>("postgres", tags: new[] { "ready" })
+            .AddCheck<CFCHub.Infrastructure.Health.RedisHealthCheck>("redis", tags: new[] { "ready" })
+            .AddCheck<CFCHub.Infrastructure.Health.S3HealthCheck>("s3", tags: new[] { "ready" });
+
         return services;
     }
 }

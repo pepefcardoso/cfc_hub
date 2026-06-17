@@ -12,13 +12,13 @@ using CFCHub.Api.Endpoints.Contracts;
 using CFCHub.Api.Endpoints.Finance;
 using CFCHub.Api.Endpoints.Compliance;
 using CFCHub.Api.Endpoints.Public;
+using CFCHub.Api.Endpoints.Health;
 var builder = WebApplication.CreateBuilder(args);
 LoggingConfiguration.ConfigureSerilog(builder);
 
 builder.Services.AddCfcHubTelemetry(builder.Configuration, builder.Environment);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
@@ -45,5 +45,6 @@ app.MapPaymentEndpoints();
 app.MapDocumentEndpoints();
 app.MapDetranEndpoints();
 app.MapPublicEndpoints();
+app.MapHealthEndpoints();
 
 app.Run();

@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config = {
-  darkMode: ["class"],
+  darkMode: ["class", "[data-theme=\"dark\"]"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -44,6 +44,28 @@ const config = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
+        cfc: {
+          brand: {
+            primary: "hsl(var(--cfc-brand-primary))",
+            secondary: "hsl(var(--cfc-brand-secondary))",
+            accent: "hsl(var(--cfc-brand-accent))",
+          },
+          status: {
+            success: "hsl(var(--cfc-status-success))",
+            warning: "hsl(var(--cfc-status-warning))",
+            error: "hsl(var(--cfc-status-error))",
+            info: "hsl(var(--cfc-status-info))",
+          },
+          surface: {
+            100: "hsl(var(--cfc-surface-100))",
+            200: "hsl(var(--cfc-surface-200))",
+            300: "hsl(var(--cfc-surface-300))",
+          },
+          text: {
+            primary: "hsl(var(--cfc-text-primary))",
+            secondary: "hsl(var(--cfc-text-secondary))",
+          }
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

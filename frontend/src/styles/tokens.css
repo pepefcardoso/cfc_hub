@@ -1,0 +1,38 @@
+@layer base {
+  :root,
+  [data-theme="light"] {
+    --cfc-brand-primary: 221 83% 53%;
+    --cfc-brand-secondary: 215 14% 34%;
+    --cfc-brand-accent: 38 92% 50%;
+    
+    --cfc-status-success: 142 71% 45%;
+    --cfc-status-warning: 38 92% 50%;
+    --cfc-status-error: 348 83% 47%;
+    --cfc-status-info: 221 83% 53%;
+
+    --cfc-surface-100: 0 0% 100%;
+    --cfc-surface-200: 210 40% 98%;
+    --cfc-surface-300: 210 40% 96%;
+    
+    --cfc-text-primary: 222 47% 11%;
+    --cfc-text-secondary: 215 16% 47%;
+  }
+
+  [data-theme="dark"] {
+    --cfc-brand-primary: 217 91% 60%;
+    --cfc-brand-secondary: 215 20% 65%;
+    --cfc-brand-accent: 48 96% 53%;
+    
+    --cfc-status-success: 142 76% 36%;
+    --cfc-status-warning: 48 96% 53%;
+    --cfc-status-error: 348 83% 47%;
+    --cfc-status-info: 217 91% 60%;
+
+    --cfc-surface-100: 222 47% 11%;
+    --cfc-surface-200: 217 33% 17%;
+    --cfc-surface-300: 215 28% 22%;
+    
+    --cfc-text-primary: 210 40% 98%;
+    --cfc-text-secondary: 215 20% 65%;
+  }
+}

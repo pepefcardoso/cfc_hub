@@ -40,6 +40,14 @@ public static class RedisKeys
     public static string TenantResolution(string env, string slug)
         => $"{env}:global:tenant:{slug}";
 
+    // Document Expiry Lease
+    public static string DocExpiryLease(string env, string date)
+        => $"{env}:global:docexpiry:lease:{date}";
+
+    // Slot Reminder Lease
+    public static string SlotReminderLease(string env, string tenant)
+        => $"{env}:{tenant}:slotreminder:lease";
+
     public static string CpfHash(string cpf)
     {
         if (string.IsNullOrWhiteSpace(cpf))

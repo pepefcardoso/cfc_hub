@@ -13,4 +13,9 @@ public class EncryptedStringConverter : ValueConverter<string, string>
             mappingHints: null)
     {
     }
+
+    public EncryptedStringConverter()
+        : base(v => v, v => v, mappingHints: null)
+    {
+    }
 }

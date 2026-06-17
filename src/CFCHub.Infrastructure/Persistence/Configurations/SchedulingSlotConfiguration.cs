@@ -50,6 +50,8 @@ public class SchedulingSlotConfiguration : IEntityTypeConfiguration<SchedulingSl
         builder.Property(x => x.CancellationReason)
             .HasMaxLength(500);
 
+        builder.Property(x => x.ReminderSentAt);
+
         builder.Ignore(x => x.DomainEvents);
 
         // Exclusion constraints added via migrationBuilder.Sql(...) in migration

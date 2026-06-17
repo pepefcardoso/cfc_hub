@@ -17,6 +17,7 @@ public sealed class SchedulingSlot : AggregateRoot<SchedulingSlotId>
     public DateTimeOffset EndedAt { get; private set; }
     public SlotStatus Status { get; private set; }
     public string? CancellationReason { get; private set; }
+    public DateTimeOffset? ReminderSentAt { get; private set; }
 
     private SchedulingSlot(
         SchedulingSlotId id,
@@ -109,5 +110,21 @@ public sealed class SchedulingSlot : AggregateRoot<SchedulingSlotId>
         }
 
         Status = SlotStatus.NoShow;
+    }
+
+    public void MarkReminderSent(ISystemClock clock)
+    {
+        if (ReminderSentAt.HasValue)
+        {
+            throw new UnprocessableException("Reminder already sent for this slot.", "REMINDER_ALREADY_SENT");
+        }
+
+        ReminderSentAt = clock.UtcNow;
+
+        AddDomainEvent(new SchedulingSlotReminderRequestedEvent(
+            Id,
+            StudentId.Value,
+            StartedAt,
+            clock.UtcNow));
     }
 }

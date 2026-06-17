@@ -1,14 +1,19 @@
-using CFCHub.Workers.Logging;
+﻿using CFCHub.Workers.Logging;
 using OpenTelemetry;
 using OpenTelemetry.Extensions.AWS.Trace;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using CFCHub.Application.Common.Telemetry;
 
+using CFCHub.Workers.Outbox;
+
 var builder = Host.CreateApplicationBuilder(args);
 LoggingConfiguration.ConfigureSerilog(builder);
 
 Sdk.SetDefaultTextMapPropagator(new AWSXRayPropagator());
+
+builder.Services.AddScoped<IOutboxMessageDispatcher, OutboxMessageDispatcher>();
+builder.Services.AddHostedService<OutboxWorker>();
 
 builder.Services.AddOpenTelemetry()
     .ConfigureResource(resource => resource.AddService("CFCHub.Workers"))
@@ -32,4 +37,4 @@ builder.Services.AddOpenTelemetry()
     });
 
 var host = builder.Build();
-host.Run();
+namespace CFCHub.Workers { public partial class Program { } }

@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\CFCHub.Api\CFCHub.Api.csproj" />
     <ProjectReference Include="..\..\src\CFCHub.Infrastructure\CFCHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\CFCHub.Workers\CFCHub.Workers.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />

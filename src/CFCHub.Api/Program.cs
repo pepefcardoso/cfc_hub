@@ -1,4 +1,4 @@
-using System.Threading;
+﻿using System.Threading;
 using CFCHub.Api.Logging;
 using CFCHub.Api.Telemetry;
 using CFCHub.Api.DependencyInjection;
@@ -55,5 +55,4 @@ app.MapHealthEndpoints();
 
 app.Run();
 
-public partial class Program { }
-
+namespace CFCHub.Api { public partial class Program { } }

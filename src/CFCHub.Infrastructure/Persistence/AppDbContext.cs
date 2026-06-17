@@ -12,7 +12,7 @@ using CFCHub.Domain.Identity;
 using CFCHub.Domain.Scheduling;
 using CFCHub.Domain.Shared;
 using CFCHub.Infrastructure.Auditing;
-using CFCHub.Infrastructure.Outbox;
+using CFCHub.Domain.Shared.Outbox;
 using Microsoft.EntityFrameworkCore;
 
 namespace CFCHub.Infrastructure.Persistence;

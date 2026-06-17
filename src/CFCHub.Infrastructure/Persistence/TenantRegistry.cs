@@ -109,4 +109,34 @@ public class TenantRegistry : ITenantRegistry
             if (wasClosed) await connection.CloseAsync();
         }
     }
+
+    public async Task<System.Collections.Generic.IReadOnlyList<TenantRecord>> GetActiveTenantsAsync(CancellationToken ct = default)
+    {
+        var connection = _context.Database.GetDbConnection();
+        var wasClosed = connection.State == ConnectionState.Closed;
+        if (wasClosed) await connection.OpenAsync(ct);
+
+        try
+        {
+            using var command = connection.CreateCommand();
+            command.CommandText = "SELECT id, slug, schema_name, status FROM public.tenants WHERE status = 'Active';";
+
+            using var reader = await command.ExecuteReaderAsync(ct);
+            var results = new System.Collections.Generic.List<TenantRecord>();
+            while (await reader.ReadAsync(ct))
+            {
+                results.Add(new TenantRecord(
+                    reader.GetGuid(0),
+                    reader.GetString(1),
+                    reader.GetString(2),
+                    reader.GetString(3)
+                ));
+            }
+            return results;
+        }
+        finally
+        {
+            if (wasClosed) await connection.CloseAsync();
+        }
+    }
 }

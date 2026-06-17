@@ -33,7 +33,7 @@ public class ProgramTests : IAsyncLifetime
         .WithImage("redis:7-alpine")
         .Build();
 
-    private WebApplicationFactory<Program> _factory = null!;
+    private WebApplicationFactory<CFCHub.Api.Program> _factory = null!;
     private HttpClient _client = null!;
     private RSA _rsa = null!;
 
@@ -52,9 +52,9 @@ public class ProgramTests : IAsyncLifetime
 
         var senderMock = Substitute.For<ISender>();
         senderMock.Send(Arg.Any<GetStudentsQuery>(), Arg.Any<CancellationToken>())
-            .Returns(new PaginatedList<StudentDto>(new List<StudentDto>(), 0, 1, 10));
+            .Returns(new CFCHub.Domain.Shared.PagedResult<CFCHub.Application.Enrollment.Queries.GetStudent.StudentResult>(new List<CFCHub.Application.Enrollment.Queries.GetStudent.StudentResult>(), null, false, 0));
 
-        _factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+        _factory = new WebApplicationFactory<CFCHub.Api.Program>().WithWebHostBuilder(builder =>
         {
             builder.ConfigureTestServices(services =>
             {

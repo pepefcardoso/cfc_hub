@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CFCHub.Application.Common.Interfaces;
 using CFCHub.Domain.Shared;
+using CFCHub.Domain.Shared.Outbox;
 using CFCHub.Infrastructure.Persistence;
 
 namespace CFCHub.Infrastructure.Outbox;
@@ -20,15 +21,7 @@ public class OutboxService : IOutboxService
 
     public async Task InsertAsync(string type, string payload, CancellationToken cancellationToken = default)
     {
-        var outboxMessage = new OutboxMessage
-        {
-            Id = Guid.NewGuid(),
-            Type = type,
-            Payload = payload,
-            OccurredOnUtc = _clock.UtcNow,
-            Status = "Pending"
-        };
-
+        var outboxMessage = OutboxMessage.Create(type, payload, _clock.UtcNow);
         await _context.OutboxMessages.AddAsync(outboxMessage, cancellationToken);
     }
 }

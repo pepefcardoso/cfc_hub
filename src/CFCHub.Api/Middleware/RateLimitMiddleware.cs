@@ -53,7 +53,9 @@ public class RateLimitMiddleware
                 window = TimeSpan.FromMinutes(1);
             }
         }
-        else if (path.StartsWith("/api/v1/", StringComparison.OrdinalIgnoreCase) && path.Contains("/detran/", StringComparison.OrdinalIgnoreCase) && method == HttpMethods.Get)
+        else if (path.StartsWith("/api/v1/", StringComparison.OrdinalIgnoreCase) && 
+                 (path.Contains("/detran/", StringComparison.OrdinalIgnoreCase) || path.EndsWith("/cnh-status", StringComparison.OrdinalIgnoreCase)) && 
+                 method == HttpMethods.Get)
         {
             limit = 5;
             window = TimeSpan.FromMinutes(1);

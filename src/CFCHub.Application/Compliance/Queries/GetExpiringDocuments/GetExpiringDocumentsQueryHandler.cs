@@ -7,7 +7,7 @@ using MediatR;
 
 namespace CFCHub.Application.Compliance.Queries.GetExpiringDocuments;
 
-public class GetExpiringDocumentsQueryHandler : IRequestHandler<GetExpiringDocumentsQuery, IEnumerable<ExpiringDocumentResult>>
+public class GetExpiringDocumentsQueryHandler : IRequestHandler<GetExpiringDocumentsQuery, CFCHub.Domain.Shared.PagedResult<ExpiringDocumentResult>>
 {
     private readonly IDocumentRepository _documentRepository;
 
@@ -16,16 +16,18 @@ public class GetExpiringDocumentsQueryHandler : IRequestHandler<GetExpiringDocum
         _documentRepository = documentRepository;
     }
 
-    public async Task<IEnumerable<ExpiringDocumentResult>> Handle(GetExpiringDocumentsQuery request, CancellationToken cancellationToken)
+    public async Task<CFCHub.Domain.Shared.PagedResult<ExpiringDocumentResult>> Handle(GetExpiringDocumentsQuery request, CancellationToken cancellationToken)
     {
         var records = await _documentRepository.GetExpiringAsync(request.From, request.To, cancellationToken);
 
-        return records.Select(r => new ExpiringDocumentResult(
+        var list = records.Select(r => new ExpiringDocumentResult(
             r.Id.Value,
             r.StudentId.Value,
             r.Type,
             r.ExpiryDate,
             r.LastAlertSentAt
-        ));
+        )).ToList();
+        
+        return new CFCHub.Domain.Shared.PagedResult<ExpiringDocumentResult>(list, null, false, list.Count);
     }
 }

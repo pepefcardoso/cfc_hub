@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -65,11 +65,11 @@ public static class SesWebhookEndpoints
 
                     var sesEvent = JsonNode.Parse(messageStr);
                     var notificationType = sesEvent?["notificationType"]?.GetValue<string>();
-                    
+
                     var mailNode = sesEvent?["mail"];
                     var sesMessageId = mailNode?["messageId"]?.GetValue<string>() ?? Guid.NewGuid().ToString();
                     var destination = mailNode?["destination"]?[0]?.GetValue<string>() ?? string.Empty;
-                    
+
                     string? bounceType = null;
                     string? eventTimestampStr = null;
 

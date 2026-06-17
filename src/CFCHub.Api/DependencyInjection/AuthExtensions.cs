@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using CFCHub.Application.Common.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,7 +16,7 @@ public static class AuthExtensions
         var serviceProvider = services.BuildServiceProvider();
         var secretsManager = serviceProvider.GetRequiredService<ISecretsManagerService>();
 
-        var publicKeyArn = configuration["Jwt:PublicKeyArn"] 
+        var publicKeyArn = configuration["Jwt:PublicKeyArn"]
             ?? Environment.GetEnvironmentVariable("CFCHUB_JWT_PUBLIC_KEY_ARN");
 
         RsaSecurityKey? rsaKey = null;

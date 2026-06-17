@@ -1,4 +1,4 @@
-using CFCHub.Application.Common.Behaviors;
+﻿using CFCHub.Application.Common.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +16,7 @@ public static class ApplicationExtensions
         services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(applicationAssembly);
-            
+
             cfg.AddBehavior(typeof(MediatR.IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             cfg.AddBehavior(typeof(MediatR.IPipelineBehavior<,>), typeof(TenantBehavior<,>));
             cfg.AddBehavior(typeof(MediatR.IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

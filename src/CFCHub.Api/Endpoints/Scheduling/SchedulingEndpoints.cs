@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Scheduling.Commands.BookSlot;
 using CFCHub.Application.Scheduling.Commands.CancelSlot;
 using CFCHub.Application.Scheduling.Commands.CompleteSlot;

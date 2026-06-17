@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -27,7 +27,7 @@ public static class HealthEndpoints
                 var statusCode = report.Status == HealthStatus.Healthy ? 200 : 503;
                 context.Response.StatusCode = statusCode;
                 context.Response.ContentType = "application/json";
-                
+
                 var response = new
                 {
                     dependencies = report.Entries.ToDictionary(
@@ -35,7 +35,7 @@ public static class HealthEndpoints
                         entry => entry.Value.Status.ToString()
                     )
                 };
-                
+
                 await context.Response.WriteAsync(JsonSerializer.Serialize(response));
             }
         }).AllowAnonymous();

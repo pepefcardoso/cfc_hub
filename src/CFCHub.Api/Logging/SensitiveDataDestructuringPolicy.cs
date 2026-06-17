@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using Serilog.Core;
 using Serilog.Events;
@@ -12,7 +12,7 @@ public class SensitiveDataDestructuringPolicy : IDestructuringPolicy
     {
         var type = value.GetType();
         var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-        
+
         bool hasSensitive = false;
         foreach (var property in properties)
         {

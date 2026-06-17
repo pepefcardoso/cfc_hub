@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Amazon.S3;
 using Amazon.SecretsManager;
 using Amazon.SimpleEmail;
@@ -35,22 +35,22 @@ public static class InfrastructureExtensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<ITenantContext, TenantContext>();
-        
+
         services.AddScoped<TenantMigrationOrchestrator>();
         services.AddScoped<ITenantProvisioningService, TenantProvisioningService>();
         services.AddScoped<ITenantRegistry, TenantRegistry>();
-        
+
         services.AddSingleton<AuditInterceptor>();
-        
+
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddScoped<IOutboxService, OutboxService>();
-        
+
         services.AddDbContext<AppDbContext>((sp, options) =>
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection") 
+            var connectionString = configuration.GetConnectionString("DefaultConnection")
                 ?? Environment.GetEnvironmentVariable("CFCHUB_DB_CONNECTION_STRING");
             options.UseNpgsql(connectionString);
-            
+
             var auditInterceptor = sp.GetRequiredService<AuditInterceptor>();
             options.AddInterceptors(auditInterceptor);
             options.ReplaceService<Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory, TenantModelCacheKeyFactory>();
@@ -70,37 +70,37 @@ public static class InfrastructureExtensions
         services.AddScoped<IVehicleRepository, VehicleRepository>();
 
         // Redis
-        var redisConnectionString = configuration.GetConnectionString("Redis") 
-            ?? Environment.GetEnvironmentVariable("CFCHUB_REDIS_CONNECTION_STRING") 
+        var redisConnectionString = configuration.GetConnectionString("Redis")
+            ?? Environment.GetEnvironmentVariable("CFCHUB_REDIS_CONNECTION_STRING")
             ?? "localhost:6379";
-        services.AddSingleton<IConnectionMultiplexer>(sp => 
+        services.AddSingleton<IConnectionMultiplexer>(sp =>
             ConnectionMultiplexer.Connect(redisConnectionString));
-            
+
         services.AddSingleton<ISchedulingLockService, RedisLockService>();
         services.AddScoped<IAvailabilityCacheService, AvailabilityCacheService>();
         services.AddScoped<IAvailabilityCalculatorService, AvailabilityCalculatorService>();
         services.AddSingleton<ITenantCacheService, TenantCacheService>();
-        
+
         // AWS and External Services
         services.AddAWSService<IAmazonSecretsManager>();
         services.AddAWSService<IAmazonS3>();
         services.AddAWSService<IAmazonSimpleEmailService>();
-        
+
         services.AddSingleton<ISecretsManagerService, SecretsManagerService>();
         services.AddSingleton<IDataProtectionService, DataProtectionService>();
         services.AddSingleton<IFileStorageService, S3FileStorageService>();
         services.AddSingleton<IEmailService, SesEmailService>();
-        
+
         // Common Services
         services.AddSingleton<ISystemClock, SystemClock>();
         services.AddSingleton<IIdGenerator, GuidIdGenerator>();
-            
+
         // Auth / Identity
         services.AddScoped<IJwtValidationService, JwtValidationService>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
-        
+
         services.AddSingleton<IRateLimiter, RedisRateLimiter>();
-            
+
         services.AddHealthChecks()
             .AddCheck<CFCHub.Infrastructure.Health.PostgreSqlHealthCheck>("postgres", tags: new[] { "ready" })
             .AddCheck<CFCHub.Infrastructure.Health.RedisHealthCheck>("redis", tags: new[] { "ready" })

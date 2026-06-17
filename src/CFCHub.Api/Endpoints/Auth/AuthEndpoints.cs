@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Identity.Commands.Login;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Finance.Commands.RecordPayment;
 using CFCHub.Application.Finance.Queries.GetPaymentPlan;
 using MediatR;

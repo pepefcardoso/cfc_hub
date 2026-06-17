@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Admin.Queries.GetPublicCfcInfo;
 using CFCHub.Application.Admin.Queries.GetQrCodeInfo;
 using MediatR;

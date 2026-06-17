@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Scheduling.Queries.GetAvailableSlots;
 using CFCHub.Application.Scheduling.Queries.GetSlotsByInstructor;
 using CFCHub.Domain.Shared;

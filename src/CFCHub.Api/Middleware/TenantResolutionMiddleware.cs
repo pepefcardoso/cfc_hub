@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -26,7 +26,7 @@ public class TenantResolutionMiddleware
     }
 
     public async Task InvokeAsync(
-        HttpContext context, 
+        HttpContext context,
         ITenantContext tenantContext,
         ITenantCacheService tenantCacheService,
         ITenantRegistry tenantRegistry,
@@ -51,7 +51,7 @@ public class TenantResolutionMiddleware
         }
 
         var token = authHeader.Substring("Bearer ".Length).Trim();
-        
+
         // 2. Validate JWT signature
         var principal = await jwtValidationService.ValidateTokenAsync(token);
         if (principal == null)
@@ -89,12 +89,12 @@ public class TenantResolutionMiddleware
 
         // 4. Check Redis cache
         var cacheItem = await tenantCacheService.GetByIdAsync(tenantId);
-        
+
         if (cacheItem == null)
         {
             // 5. On cache miss: query public.tenants
             var record = await tenantRegistry.GetByIdAsync(tenantId);
-            
+
             // 6. If not found -> TenantNotFoundException; if status != Active -> ForbiddenException
             if (record == null)
             {
@@ -107,7 +107,7 @@ public class TenantResolutionMiddleware
             }
 
             cacheItem = new TenantCacheItem(record.SchemaName, record.Slug, record.Id);
-            
+
             // 7. Cache result
             await tenantCacheService.SetByIdAsync(tenantId, cacheItem);
         }

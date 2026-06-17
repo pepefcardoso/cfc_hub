@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.Json;
@@ -54,7 +54,7 @@ public sealed class GlobalExceptionMiddleware
         {
             context.Response.StatusCode = MapStatusCode(cfcException);
             problemDetails.Status = context.Response.StatusCode;
-            
+
             var errorInfo = GetErrorInfo(cfcException);
             problemDetails.Type = errorInfo.Type;
             problemDetails.Detail = errorInfo.Detail;
@@ -64,7 +64,7 @@ public sealed class GlobalExceptionMiddleware
                 var errors = validationException.Errors
                     .GroupBy(e => e.PropertyName)
                     .ToDictionary(g => g.Key, g => g.Select(e => e.ErrorMessage).ToArray());
-                
+
                 problemDetails.Extensions["errors"] = errors;
             }
         }
@@ -105,7 +105,7 @@ public sealed class GlobalExceptionMiddleware
             "SCHEDULING_CONFLICT" => ("https://cfchub.com.br/errors/scheduling-conflict", "O instrutor já possui aula agendada neste horário."),
             "UNPROCESSABLE" => ("https://cfchub.com.br/errors/unprocessable", "Regra de negócio violada."),
             "INTERNAL_ERROR" => ("https://cfchub.com.br/errors/internal-error", "Erro interno do servidor."),
-            
+
             _ => ex switch
             {
                 ValidationException => ("https://cfchub.com.br/errors/validation-error", "Erro de validação nos dados da requisição."),

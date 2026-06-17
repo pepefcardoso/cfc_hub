@@ -14,6 +14,7 @@ using CFCHub.Api.Endpoints.Compliance;
 using CFCHub.Api.Endpoints.Public;
 using CFCHub.Api.Endpoints.Health;
 using CFCHub.Infrastructure.Persistence;
+using CFCHub.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 LoggingConfiguration.ConfigureSerilog(builder);
@@ -22,6 +23,7 @@ builder.Services.AddCfcHubTelemetry(builder.Configuration, builder.Environment);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAuth(builder.Configuration);
+builder.Services.AddSwaggerConfiguration();
 
 var app = builder.Build();
 
@@ -35,6 +37,8 @@ app.UseMiddleware<CFCHub.Api.Middleware.SecurityHeadersMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.GlobalExceptionMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.TenantResolutionMiddleware>();
 app.UseMiddleware<CFCHub.Api.Middleware.RateLimitMiddleware>();
+
+app.UseSwaggerConfiguration();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ public class RateLimitMiddleware
     }
 
     public async Task InvokeAsync(
-        HttpContext context, 
+        HttpContext context,
         IRateLimiter rateLimiter,
         ITenantContext tenantContext,
         ICurrentUserService currentUserService,
@@ -59,8 +59,8 @@ public class RateLimitMiddleware
                 window = TimeSpan.FromMinutes(1);
             }
         }
-        else if (path.StartsWith("/api/v1/", StringComparison.OrdinalIgnoreCase) && 
-                 (path.Contains("/detran/", StringComparison.OrdinalIgnoreCase) || path.EndsWith("/cnh-status", StringComparison.OrdinalIgnoreCase)) && 
+        else if (path.StartsWith("/api/v1/", StringComparison.OrdinalIgnoreCase) &&
+                 (path.Contains("/detran/", StringComparison.OrdinalIgnoreCase) || path.EndsWith("/cnh-status", StringComparison.OrdinalIgnoreCase)) &&
                  method == HttpMethods.Get)
         {
             limit = 5;
@@ -76,8 +76,8 @@ public class RateLimitMiddleware
         var endpointHashBytes = SHA256.HashData(Encoding.UTF8.GetBytes(routeTemplate ?? ""));
         var endpointHash = Convert.ToHexString(endpointHashBytes).ToLowerInvariant();
 
-        var userId = currentUserService.UserId != Guid.Empty 
-            ? currentUserService.UserId.ToString() 
+        var userId = currentUserService.UserId != Guid.Empty
+            ? currentUserService.UserId.ToString()
             : context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
 
         var tenant = tenantContext.IsResolved ? tenantContext.TenantSlug : "global";
@@ -92,7 +92,7 @@ public class RateLimitMiddleware
             _logger.LogWarning("Rate limit exceeded for key: {Key}. Retry after: {RetryAfter}s", key, retryAfterSeconds);
             context.Response.StatusCode = StatusCodes.Status429TooManyRequests;
             context.Response.Headers["Retry-After"] = retryAfterSeconds.ToString();
-            
+
             // Generate a problem details response
             context.Response.ContentType = "application/problem+json; charset=utf-8";
             var traceId = currentUserService.TraceId;

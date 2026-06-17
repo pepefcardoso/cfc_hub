@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Enrollment.Commands.CreateStudent;
 using CFCHub.Application.Enrollment.Commands.RequestDataErasure;
 using CFCHub.Application.Enrollment.Queries.GetStudent;

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using CFCHub.Domain.Shared;
 using Microsoft.AspNetCore.Http;

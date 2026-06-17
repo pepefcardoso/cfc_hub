@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Compliance.Queries.GetCnhStatus;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

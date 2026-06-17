@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Enrollment.Commands.EnrollStudent;
 using CFCHub.Application.Enrollment.Queries.GetEnrollments;
 using MediatR;

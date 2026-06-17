@@ -1,4 +1,4 @@
-using CFCHub.Api.Endpoints.Common;
+﻿using CFCHub.Api.Endpoints.Common;
 using CFCHub.Application.Contracts.Commands.SignContract;
 using CFCHub.Application.Contracts.Queries.GetContract;
 using MediatR;

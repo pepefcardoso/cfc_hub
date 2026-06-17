@@ -43,5 +43,8 @@ builder.Services.AddOpenTelemetry()
         }
     });
 
+CFCHub.Workers.Pdf.PdfConfiguration.Configure();
+builder.Services.AddScoped<IOutboxMessageHandler<CFCHub.Workers.Outbox.Handlers.ContractGenerationRequested>, CFCHub.Workers.Outbox.Handlers.ContractGenerationHandler>();
+
 var host = builder.Build();
 namespace CFCHub.Workers { public partial class Program { } }

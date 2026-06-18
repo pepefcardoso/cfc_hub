@@ -17,21 +17,21 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { checkRouteAccess } from '@/lib/permissions';
 
 interface RouteItem {
   href: string;
   label: string;
   icon: React.ReactNode;
-  roles: string[];
 }
 
 const routes: RouteItem[] = [
-  { href: '/agenda', label: 'Agenda', icon: <CalendarDays className="w-5 h-5" />, roles: ['All'] },
-  { href: '/alunos', label: 'Alunos', icon: <Users className="w-5 h-5" />, roles: ['Admin', 'Receptionist'] },
-  { href: '/contratos', label: 'Contratos', icon: <FileText className="w-5 h-5" />, roles: ['Admin', 'Receptionist'] },
-  { href: '/financeiro', label: 'Financeiro', icon: <DollarSign className="w-5 h-5" />, roles: ['Admin', 'Financial'] },
-  { href: '/conformidade', label: 'Conformidade', icon: <ShieldCheck className="w-5 h-5" />, roles: ['Admin', 'Receptionist'] },
-  { href: '/configuracoes/usuarios', label: 'Usuários', icon: <Settings className="w-5 h-5" />, roles: ['Admin'] },
+  { href: '/agenda', label: 'Agenda', icon: <CalendarDays className="w-5 h-5" /> },
+  { href: '/alunos', label: 'Alunos', icon: <Users className="w-5 h-5" /> },
+  { href: '/contratos', label: 'Contratos', icon: <FileText className="w-5 h-5" /> },
+  { href: '/financeiro', label: 'Financeiro', icon: <DollarSign className="w-5 h-5" /> },
+  { href: '/conformidade', label: 'Conformidade', icon: <ShieldCheck className="w-5 h-5" /> },
+  { href: '/configuracoes/usuarios', label: 'Usuários', icon: <Settings className="w-5 h-5" /> },
 ];
 
 export function Sidebar() {
@@ -67,9 +67,9 @@ export function Sidebar() {
 
   const closeMobile = () => setIsMobileOpen(false);
 
-  // Filter routes based on role
+  // Filter routes based on role using permissions.ts
   const visibleRoutes = routes.filter(route => 
-    route.roles.includes('All') || route.roles.includes(role)
+    role && checkRouteAccess(role, route.href)
   );
 
   if (!isMounted) {

@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using CFCHub.Api.Logging;
 using CFCHub.Api.Telemetry;
 using CFCHub.Api.DependencyInjection;
@@ -13,6 +13,7 @@ using CFCHub.Api.Endpoints.Finance;
 using CFCHub.Api.Endpoints.Compliance;
 using CFCHub.Api.Endpoints.Public;
 using CFCHub.Api.Endpoints.Health;
+using CFCHub.Api.Endpoints.Development;
 using CFCHub.Infrastructure.Persistence;
 using CFCHub.Api.OpenApi;
 
@@ -56,6 +57,11 @@ app.MapDocumentEndpoints();
 app.MapDetranEndpoints();
 app.MapPublicEndpoints();
 app.MapHealthEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapDevelopmentEndpoints();
+}
 
 app.Run();
 

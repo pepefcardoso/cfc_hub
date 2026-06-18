@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { decodeSession, SESSION_COOKIE_NAME } from '@/lib/auth/session';
+import { checkRouteAccess } from '@/lib/permissions';
 
 export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
@@ -35,6 +36,11 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = redirectUrl;
     url.searchParams.delete('redirect');
+    return NextResponse.redirect(url);
+  // Enforce role-based route access
+  if (!checkRouteAccess(session.role, pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/agenda'; // Redirect to a safe default page
     return NextResponse.redirect(url);
   }
 

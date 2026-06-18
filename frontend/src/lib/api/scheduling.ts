@@ -15,7 +15,7 @@ export interface Slot {
   instructorName?: string;
   vehicleId?: string;
   trackType?: string;
-  status?: 'available' | 'booked';
+  status?: 'Available' | 'Booked' | 'Confirmed' | 'Cancelled' | 'Completed' | 'NoShow';
 }
 
 export interface BookSlotRequest {
@@ -51,4 +51,14 @@ export const schedulingApi = {
   },
   bookSlot: (data: BookSlotRequest, signal?: AbortSignal) =>
     apiFetch<Slot>(`/scheduling/slots`, { method: 'POST', body: JSON.stringify(data), signal }),
+  getStudentSlots: (studentId: string, cursor: string | null = null, signal?: AbortSignal) =>
+    apiFetch<PaginatedResponse<Slot>>(`/scheduling/slots/student/${studentId}?cursor=${cursor || ''}`, { signal }),
+  getInstructorSlots: (instructorId: string, cursor: string | null = null, signal?: AbortSignal) =>
+    apiFetch<PaginatedResponse<Slot>>(`/scheduling/slots/instructor/${instructorId}?cursor=${cursor || ''}`, { signal }),
+  updateSlotStatus: (id: string, status: string, reason?: string, signal?: AbortSignal) =>
+    apiFetch<Slot>(`/scheduling/slots/${id}/status`, { 
+      method: 'PATCH', 
+      body: JSON.stringify({ status, reason }), 
+      signal 
+    }),
 };

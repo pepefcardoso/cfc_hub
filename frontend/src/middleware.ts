@@ -9,7 +9,8 @@ export function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/_next') ||
     pathname.match(/\.(.*)$/) ||
-    pathname.startsWith('/api/auth')
+    pathname.startsWith('/api/auth') ||
+    pathname.startsWith('/public')
   ) {
     return NextResponse.next();
   }
@@ -37,6 +38,8 @@ export function middleware(request: NextRequest) {
     url.pathname = redirectUrl;
     url.searchParams.delete('redirect');
     return NextResponse.redirect(url);
+  }
+
   // Enforce role-based route access
   if (!checkRouteAccess(session.role, pathname)) {
     const url = request.nextUrl.clone();

@@ -108,3 +108,56 @@ jobs:
         env:
           ConnectionStrings__Postgres: "Host=localhost;Port=5432;Database=cfchub;Username=postgres;Password=password"
           ConnectionStrings__Redis: "localhost:6379"
+
+  e2e-tests:
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    needs: integration-tests
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        working-directory: ./frontend
+        run: npx playwright install --with-deps
+
+      - name: Start Application Stack
+        run: docker compose up -d
+        env:
+          POSTGRES_PASSWORD: password
+          CFCHUB_DB_CONNECTION_STRING: "Host=postgres;Port=5432;Database=cfchub;Username=cfchub;Password=password"
+          CFCHUB_REDIS_CONNECTION_STRING: "redis:6379"
+          CFCHUB_AWS_REGION: "us-east-1"
+          CFCHUB_S3_DOCUMENTS_BUCKET: "cfchub-local-documents"
+          CFCHUB_S3_MEDICAL_BUCKET: "cfchub-local-medical"
+          CFCHUB_SES_FROM_ADDRESS: "no-reply@cfchub.local"
+          CFCHUB_JWT_PRIVATE_KEY_ARN: "local-arn"
+          CFCHUB_DATA_PROTECTION_KEY_PREFIX: "cfchub-keys"
+
+      - name: Wait for API to be ready
+        run: |
+          timeout 30 bash -c 'until curl -s http://localhost:5000/api/v1/public/cfc/health > /dev/null; do sleep 1; done'
+
+      - name: Run Playwright tests
+        working-directory: ./frontend
+        run: npm run e2e
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
+          
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: frontend/playwright-report/
+          retention-days: 30

@@ -6,6 +6,12 @@ import { checkRouteAccess } from '@/lib/permissions';
 export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
+  if (pathname === '/') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/login';
+    return NextResponse.redirect(url);
+  }
+
   if (
     pathname.startsWith('/_next') ||
     pathname.match(/\.(.*)$/) ||

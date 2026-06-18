@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  output: process.env.NODE_ENV === "development" ? undefined : "standalone",
+  experimental: {
+    cpus: 2,
+  },
 };
 
 export default nextConfig;

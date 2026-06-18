@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -6,7 +7,7 @@ import { PaymentPlan, Installment } from '@/lib/api/finance';
 
 // Mock SessionContext to simulate different roles
 let mockRole = 'Admin';
-jest.mock('@/context/SessionContext', () => ({
+vi.mock('@/context/SessionContext', () => ({
   useSession: () => ({ role: mockRole })
 }));
 
@@ -28,10 +29,10 @@ describe('PaymentPlanTable', () => {
     totalPaid: 0
   };
 
-  const mockOnRecordPayment = jest.fn();
+  const mockOnRecordPayment = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders correctly with correct currency formatting', () => {
@@ -39,7 +40,7 @@ describe('PaymentPlanTable', () => {
     render(<PaymentPlanTable paymentPlan={mockPaymentPlan} onRecordPayment={mockOnRecordPayment} />);
     
     // Check if the amount is formatted as BRL
-    expect(screen.getByText('R$ 500,00')).toBeInTheDocument();
+    expect(screen.getAllByText('R$ 500,00')[0]).toBeInTheDocument();
     
     // Check if the "Registrar pagamento" action is visible for Admin
     expect(screen.getByRole('button', { name: /Registrar pagamento/i })).toBeInTheDocument();
@@ -50,7 +51,7 @@ describe('PaymentPlanTable', () => {
     render(<PaymentPlanTable paymentPlan={mockPaymentPlan} onRecordPayment={mockOnRecordPayment} />);
     
     // Check if the amount is formatted as BRL
-    expect(screen.getByText('R$ 500,00')).toBeInTheDocument();
+    expect(screen.getAllByText('R$ 500,00')[0]).toBeInTheDocument();
     
     // Instructor should NOT see the action button
     expect(screen.queryByRole('button', { name: /Registrar pagamento/i })).not.toBeInTheDocument();

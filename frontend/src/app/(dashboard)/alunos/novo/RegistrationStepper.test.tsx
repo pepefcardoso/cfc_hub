@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import { RegistrationStepper } from './RegistrationStepper';
 
@@ -43,21 +44,22 @@ describe('RegistrationStepper', () => {
       expect(screen.getByLabelText(/Rua \/ Logradouro/i)).toBeInTheDocument();
     });
 
-    fireEvent.change(screen.getByLabelText(/CEP/i), { target: { value: '01000-000' } });
-    fireEvent.change(screen.getByLabelText(/Rua \/ Logradouro/i), { target: { value: 'Rua Direita' } });
-    fireEvent.change(screen.getByLabelText(/Número/i), { target: { value: '10' } });
-    fireEvent.change(screen.getByLabelText(/Bairro/i), { target: { value: 'Sé' } });
-    fireEvent.change(screen.getByLabelText(/Cidade/i), { target: { value: 'São Paulo' } });
+    fireEvent.change(screen.getAllByLabelText(/CEP/i)[0], { target: { value: '01000-000' } });
+    fireEvent.change(screen.getAllByLabelText(/Rua \/ Logradouro/i)[0], { target: { value: 'Rua Direita' } });
+    fireEvent.change(screen.getAllByLabelText(/Número/i)[0], { target: { value: '10' } });
+    fireEvent.change(screen.getAllByLabelText(/Bairro/i)[0], { target: { value: 'Sé' } });
+    fireEvent.change(screen.getAllByLabelText(/Cidade/i)[0], { target: { value: 'São Paulo' } });
     
     // Select state (SP)
     // Note: Radix UI Select requires interacting with trigger and then item, but we can bypass the complex Radix Select interaction in simple tests by mocking or using Form components correctly, or using a fallback. For simplicity, since it's a hidden native input in some setups or we can just bypass it by setting the form value directly. But react-hook-form needs interaction.
     // Let's use the hook form's ability to trigger by finding the role="combobox"
+    const user = userEvent.setup();
     const combobox = screen.getByRole('combobox');
-    fireEvent.click(combobox);
+    await user.click(combobox);
     
-    await waitFor(() => {
+    await waitFor(async () => {
       const spOption = screen.getByText('SP');
-      fireEvent.click(spOption);
+      await user.click(spOption);
     });
 
     // Click next

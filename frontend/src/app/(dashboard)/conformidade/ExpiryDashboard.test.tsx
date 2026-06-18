@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -5,7 +6,7 @@ import { ExpiryDashboard } from './ExpiryDashboard';
 import { useExpiringDocuments } from '@/hooks/useExpiringDocuments';
 
 // Mock the custom hook
-jest.mock('@/hooks/useExpiringDocuments');
+vi.mock('@/hooks/useExpiringDocuments');
 
 const mockDocuments = [
   {
@@ -40,11 +41,11 @@ const mockDocuments = [
 describe('ExpiryDashboard', () => {
   it('ExpiryDashboard_GroupsAlertsByTier', async () => {
     // Setup mock to return predefined documents
-    (useExpiringDocuments as jest.Mock).mockReturnValue({
+    (useExpiringDocuments as vi.Mock).mockReturnValue({
       documents: mockDocuments,
       isLoading: false,
       error: null,
-      refetch: jest.fn()
+      refetch: vi.fn()
     });
 
     render(<ExpiryDashboard />);

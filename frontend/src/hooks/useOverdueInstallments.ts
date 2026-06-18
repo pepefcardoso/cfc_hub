@@ -3,12 +3,12 @@ import { financeApi, Installment } from '@/lib/api/finance';
 import { differenceInDays, parseISO } from 'date-fns';
 
 export function useOverdueInstallments() {
-  const [items, setItems] = useState<Installment[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | null>(null);
-  const [nextCursor, setNextCursor] = useState<string | null>(null);
-  const [hasMore, setHasMore] = useState<boolean>(false);
-  const [totalCount, setTotalCount] = useState<number>(0);
+  const [items, setItems] = useState([] as Installment[]);
+  const [loading, setLoading] = useState(true as boolean);
+  const [error, setError] = useState(null as Error | null);
+  const [nextCursor, setNextCursor] = useState(null as string | null);
+  const [hasMore, setHasMore] = useState(false as boolean);
+  const [totalCount, setTotalCount] = useState(0 as number);
 
   const fetchOverdue = useCallback(async (cursor: string | null = null, signal?: AbortSignal) => {
     try {

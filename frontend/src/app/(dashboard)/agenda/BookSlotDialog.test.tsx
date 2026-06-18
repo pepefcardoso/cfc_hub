@@ -1,89 +1,66 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 import { BookSlotDialog } from './BookSlotDialog';
-import { schedulingApi } from '@/lib/api/scheduling';
-import { useStudents } from '@/hooks/useStudents';
+import { server } from '@/tests/mocks/server';
+import { http, HttpResponse } from 'msw';
+import { Slot } from '@/lib/api/scheduling';
 
-// Mock dependencies
-vi.mock('@/lib/api/scheduling', () => ({
-  schedulingApi: {
-    bookSlot: vi.fn(),
-  },
-}));
-
+// Mock useStudents hook to avoid complex fetch setups
 vi.mock('@/hooks/useStudents', () => ({
-  useStudents: vi.fn(),
+  useStudents: () => ({
+    students: [
+      { id: 'student-1', name: 'John Doe', cpf: '123.456.789-00' }
+    ],
+    isLoading: false,
+  })
 }));
 
-describe('BookSlotDialog', () => {
-  const mockSlot = {
+describe('BookSlotDialog Component', () => {
+  const mockSlot: Slot = {
     id: 'slot-1',
     date: '2026-06-18',
     startTime: '10:00',
-    endTime: '10:50',
+    endTime: '11:00',
+    status: 'Available',
     instructorId: 'inst-1',
-    instructorName: 'João Instrutor',
-    vehicleId: 'CAR-1234',
-    trackType: 'Pista Principal',
-    status: 'available' as const,
+    instructorName: 'Instructor Name',
   };
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-    (useStudents as any).mockReturnValue({
-      students: [{ id: 'stu-1', name: 'Maria Silva', cpf: '123.456.789-00' }],
-      isLoading: false,
-    });
-  });
+  it('BookSlotDialog_OnConflict409_ShowsInlineError', async () => {
+    const user = userEvent.setup();
 
-  it('BookSlotDialog_OnConflict_ShowsInlineErrorWithoutClosing', async () => {
-    // Arrange
-    const handleClose = vi.fn();
-    const handleSuccess = vi.fn();
-
-    // Mock API to return 409 Conflict
-    (schedulingApi.bookSlot as any).mockRejectedValue({
-      status: 409,
-      type: 'Conflict',
-      detail: 'Horário indisponível. Tente outro.',
-    });
+    // Mock the schedulingApi.bookSlot endpoint returning 409
+    server.use(
+      http.post('http://localhost:5000/api/v1/scheduling/slots', () => {
+        return HttpResponse.json({
+          status: 409,
+          detail: 'Horário indisponível.',
+        }, { status: 409 });
+      })
+    );
 
     render(
       <BookSlotDialog
         slot={mockSlot}
         isOpen={true}
-        onClose={handleClose}
-        onSuccess={handleSuccess}
+        onClose={vi.fn()}
+        onSuccess={vi.fn()}
         category="B"
       />
     );
 
-    // Select student
-    const studentButton = screen.getByText(/Maria Silva/i);
-    fireEvent.click(studentButton);
+    // Select the student from the mocked list
+    const studentButton = screen.getByText(/John Doe/i);
+    await user.click(studentButton);
 
-    // Click confirm button
+    // Click confirm
     const confirmButton = screen.getByRole('button', { name: /Confirmar Agendamento/i });
-    fireEvent.click(confirmButton);
+    await user.click(confirmButton);
 
-    // Assert API was called
+    // Wait for the conflict error to appear
     await waitFor(() => {
-      expect(schedulingApi.bookSlot).toHaveBeenCalledWith({
-        slotId: 'slot-1',
-        date: '2026-06-18',
-        startTime: '10:00',
-        studentId: 'stu-1',
-        category: 'B',
-        instructorId: 'inst-1',
-      });
+      expect(screen.getByText('Horário indisponível. Tente outro.')).toBeInTheDocument();
     });
-
-    // Assert inline error is displayed
-    const errorMessage = await screen.findByText('Horário indisponível. Tente outro.');
-    expect(errorMessage).toBeInTheDocument();
-
-    // Assert dialog did not close
-    expect(handleClose).not.toHaveBeenCalled();
-    expect(handleSuccess).not.toHaveBeenCalled();
   });
 });

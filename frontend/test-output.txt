@@ -1,0 +1,828 @@
+[33mThe plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the [1mresolve.tsconfigPaths[22m option. You can remove the plugin and set [1mresolve.tsconfigPaths: true[22m in your Vite config instead.[39m
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.9 [39m[90mC:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend[39m
+
+(node:3132) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10292) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16132) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16540) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4312) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10100) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16760) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18160) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13428) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17128) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3152) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+ [2m[90m↓[39m[22m src/components/shell/Sidebar.test.tsx[2m > [22mSidebar[2m > [22mSidebar_AsReceptionist_DoesNotShowFinanceLink
+ [31m×[39m src/components/scheduling/SlotActions.test.tsx[2m > [22mSlotActions Component[2m > [22mSlotActions_AsStudent_OnlyShowsCancelForOwnConfirmedSlot[32m 36[2mms[22m[39m
+[31m   → Unable to find an element with the text: Cancelar. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33mclass[31m=[32m"flex gap-2"[31m
+    [36m/>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+ [32m✓[39m src/app/(dashboard)/alunos/novo/StepConsent.test.tsx[2m > [22mStepConsent Component[2m > [22mStepConsent_WithoutCheckbox_DisablesSubmitButton[33m 494[2mms[22m[39m
+[90mstderr[2m | src/app/(dashboard)/agenda/BookSlotDialog.test.tsx[2m > [22m[2mBookSlotDialog Component[2m > [22m[2mBookSlotDialog_OnConflict409_ShowsInlineError
+[22m[39mWarning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `DialogClose`.
+    at Button (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/button.tsx:38:19)
+    at DialogClose (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@base-ui/react/esm/dialog/close/DialogClose.js:18:5)
+    at div
+    at FloatingFocusManager (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@base-ui/react/esm/floating-ui-react/components/FloatingFocusManager.js:111:5)
+    at DialogPopup (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@base-ui/react/esm/dialog/popup/DialogPopup.js:34:5)
+    at FloatingPortal (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@base-ui/react/esm/floating-ui-react/components/FloatingPortal.js:103:5)
+    at DialogPortal (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@base-ui/react/esm/dialog/portal/DialogPortal.js:20:5)
+    at DialogPortal (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/dialog.tsx:45:28)
+    at DialogContent (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/dialog.tsx:76:26)
+    at DialogRoot (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@base-ui/react/esm/dialog/root/DialogRoot.js:14:22)
+    at Dialog (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/dialog.tsx:25:22)
+    at BookSlotDialog (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/agenda/BookSlotDialog.tsx:21:27)
+
+ [32m✓[39m src/app/(auth)/login/LoginForm.test.tsx[2m > [22mLoginForm[2m > [22mLoginForm_SubmitWithInvalidEmail_ShowsValidationError[33m 898[2mms[22m[39m
+ [32m✓[39m src/app/(dashboard)/agenda/BookSlotDialog.test.tsx[2m > [22mBookSlotDialog Component[2m > [22mBookSlotDialog_OnConflict409_ShowsInlineError[33m 681[2mms[22m[39m
+[90mstderr[2m | src/app/(dashboard)/alunos/novo/RegistrationStepper.test.tsx[2m > [22m[2mRegistrationStepper[2m > [22m[2mStepConsent_WithoutCheckbox_DisablesSubmitButton
+[22m[39mWarning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepPersonalData (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepPersonalData.tsx:17:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepPersonalData (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepPersonalData.tsx:17:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepPersonalData (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepPersonalData.tsx:17:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepPersonalData (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepPersonalData.tsx:17:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepPersonalData (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepPersonalData.tsx:17:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepPersonalData (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepPersonalData.tsx:17:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepAddress (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepAddress.tsx:19:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepAddress (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepAddress.tsx:19:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepAddress (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepAddress.tsx:19:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepAddress (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepAddress.tsx:19:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepAddress (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepAddress.tsx:19:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Check the render method of `Slot.Slot`.
+    at Input (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/input.tsx:11:18)
+    at file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/@radix-ui/react-slot/dist/index.mjs:7:11
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:91:60
+    at div
+    at C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:57:54
+    at Controller (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:597:37)
+    at FormField (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/components/ui/form.tsx:24:25)
+    at div
+    at StepAddress (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/StepAddress.tsx:19:72)
+    at div
+    at form
+    at FormProvider (file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/node_modules/react-hook-form/dist/index.esm.mjs:678:25)
+    at div
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+
+[90mstderr[2m | src/app/(dashboard)/alunos/novo/RegistrationStepper.test.tsx[2m > [22m[2mRegistrationStepper[2m > [22m[2mStepConsent_WithoutCheckbox_DisablesSubmitButton
+[22m[39mWarning: An update to RegistrationStepper inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: An update to RegistrationStepper inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: An update to RegistrationStepper inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+Warning: An update to RegistrationStepper inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at RegistrationStepper (C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/alunos/novo/RegistrationStepper.tsx:92:62)
+
+[90mstderr[2m | src/app/(dashboard)/alunos/novo/RegistrationStepper.test.tsx[2m > [22m[2mRegistrationStepper[2m > [22m[2mStepConsent_WithoutCheckbox_DisablesSubmitButton
+[22m[39m[MSW] Error: intercepted a request without a matching request handler:
+
+  • GET https://viacep.com.br/ws/01000000/json/
+
+If you still wish to intercept this unhandled request, please create a request handler for it.
+Read more: https://mswjs.io/docs/http/intercepting-requests
+
+[90mstderr[2m | src/app/(dashboard)/alunos/novo/RegistrationStepper.test.tsx[2m > [22m[2mRegistrationStepper[2m > [22m[2mStepConsent_WithoutCheckbox_DisablesSubmitButton
+[22m[39mViaCEP error InternalError: [MSW] Cannot bypass a request when using the "error" strategy for the "onUnhandledRequest" option.
+    at applyStrategy [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4mmsw[24m/lib/core/experimental/on-unhandled-frame.mjs:40:9[90m)[39m
+    at InterceptorHttpNetworkFrame.resolve [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4mmsw[24m/lib/core/experimental/frames/http-frame.mjs:117:7[90m)[39m
+    at Emitter.<anonymous> [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4mmsw[24m/lib/core/experimental/define-network.mjs:80:11[90m)[39m
+    at Emitter.emitAsPromise [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4mrettime[24m/build/index.mjs:177:24[90m)[39m
+    at InterceptorSource.queue [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4mmsw[24m/lib/core/experimental/sources/network-source.mjs:17:5[90m)[39m
+    at InterceptorSource.#handleRequest [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4mmsw[24m/lib/core/experimental/sources/interceptor-source.mjs:38:5[90m)[39m
+    at emitAsync [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4m@mswjs/interceptors[24m/lib/node/handleRequest-FIQv5pwH.mjs:33:36[90m)[39m
+    at [90mfile:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4m@mswjs/interceptors[24m/lib/node/handleRequest-FIQv5pwH.mjs:145:3
+    at until [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4m@open-draft/until[24m/lib/index.mjs:4:18[90m)[39m
+    at handleRequest [90m(file:///C:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/[39mnode_modules/[4m@mswjs/interceptors[24m/lib/node/handleRequest-FIQv5pwH.mjs:139:17[90m)[39m
+
+ [31m×[39m src/app/(dashboard)/alunos/novo/RegistrationStepper.test.tsx[2m > [22mRegistrationStepper[2m > [22mStepConsent_WithoutCheckbox_DisablesSubmitButton[33m 671[2mms[22m[39m
+[31m   → Found multiple elements with the text of: /Cidade/i
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<input[31m
+  [33maria-describedby[31m=[32m":rm:-form-item-description"[31m
+  [33maria-invalid[31m=[32m"false"[31m
+  [33mclass[31m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[31m
+  [33mdata-slot[31m=[32m"input"[31m
+  [33mid[31m=[32m":rm:-form-item"[31m
+  [33mname[31m=[32m"cidade"[31m
+  [33mplaceholder[31m=[32m"São Paulo"[31m
+  [33mvalue[31m=[32m""[31m
+[36m/>[31m
+
+Ignored nodes: comments, script, style
+[36m<span[31m
+  [33maria-checked[31m=[32m"false"[31m
+  [33maria-describedby[31m=[32m":rs:-form-item-description"[31m
+  [33maria-invalid[31m=[32m"false"[31m
+  [33maria-labelledby[31m=[32m":rs:-form-item-label"[31m
+  [33mclass[31m=[32m"peer relative flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-input transition-colors outline-none group-has-disabled/field:opacity-50 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary"[31m
+  [33mdata-slot[31m=[32m"checkbox"[31m
+  [33mdata-unchecked[31m=[32m""[31m
+  [33mid[31m=[32m"base-ui-:rt:"[31m
+  [33mrole[31m=[32m"checkbox"[31m
+  [33mtabindex[31m=[32m"0"[31m
+[36m/>[31m
+
+Ignored nodes: comments, script, style
+[36m<input[31m
+  [33maria-hidden[31m=[32m"true"[31m
+  [33mid[31m=[32m":rs:-form-item"[31m
+  [33mstyle[31m=[32m"clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"[31m
+  [33mtabindex[31m=[32m"-1"[31m
+  [33mtype[31m=[32m"checkbox"[31m
+[36m/>[31m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33mclass[31m=[32m"mx-auto max-w-2xl p-6 bg-card rounded-lg shadow-sm border"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-8"[31m
+      [36m>[31m
+        [36m<h2[31m
+          [33mclass[31m=[32m"text-xl font-semibold mb-2"[31m
+        [36m>[31m
+          [0mCadastrar Novo Aluno[0m
+        [36m</h2>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"flex justify-between items-center text-sm text-muted-foreground"[31m
+        [36m>[31m
+          [36m<div[31m
+            [33mclass[31m=[32m"flex items-center"[31m
+          [36m>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"flex items-center justify-center w-8 h-8 rounded-full border-2 border-primary text-primary"[31m
+            [36m>[31m
+              [0m1[0m
+            [36m</div>[31m
+            [36m<span[31m
+              [33mclass[31m=[32m"ml-2 hidden sm:block text-foreground"[31m
+            [36m>[31m
+              [0mDados Pessoais[0m
+            [36m</span>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"w-12 h-[2px] mx-2 bg-primary"[31m
+            [36m/>[31m
+          [36m</div>[31m
+          [36m<div[31m
+            [33mclass[31m=[32m"flex items-center"[31m
+          [36m>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"flex items-center justify-center w-8 h-8 rounded-full border-2 border-primary text-primary"[31m
+            [36m>[31m
+              [0m2[0m
+            [36m</div>[31m
+            [36m<span[31m
+              [33mclass[31m=[32m"ml-2 hidden sm:block text-foreground"[31m
+            [36m>[31m
+              [0mEndereço[0m
+            [36m</span>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"w-12 h-[2px] mx-2 bg-muted"[31m
+            [36m/>[31m
+          [36m</div>[31m
+          [36m<div[31m
+            [33mclass[31m=[32m"flex items-center"[31m
+          [36m>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"flex items-center justify-center w-8 h-8 rounded-full border-2 border-muted"[31m
+            [36m>[31m
+              [0m3[0m
+            [36m</div>[31m
+            [36m<span[31m
+              [33mclass[31m=[32m"ml-2 hidden sm:block "[31m
+            [36m>[31m
+              [0mConsentimento[0m
+            [36m</span>[31m
+          [36m</div>[31m
+        [36m</div>[31m
+      [36m</div>[31m
+      [36m<form[31m
+        [33mclass[31m=[32m"space-y-6"[31m
+      [36m>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"hidden"[31m
+        [36m>[31m
+          [36m<div[31m
+            [33mclass[31m=[32m"grid grid-cols-1 md:grid-cols-2 gap-4"[31m
+          [36m>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"space-y-2 md:col-span-2"[31m
+            [36m>[31m
+              [36m<label[31m
+                [33mclass[31m=[32m"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"[31m
+                [33mdata-slot[31m=[32m"label"[31m
+                [33mfor[31m=[32m":r0:-form-item"[31m
+              [36m>[31m
+                [0mNome Completo[0m
+              [36m</label>[31m
+              [36m<input[31m
+                [33maria-describedby[31m=[32m":r0:-form-item-description"[31m
+                [33maria-invalid[31m=[32m"false"[31m
+                [33mclass[31m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[31m
+                [33mdata-slot[31m=[32m"input"[31m
+                [33mid[31m=[32m":r0:-form-item"[31m
+                [33mname[31m=[32m"nome"[31m
+                [33mplaceholder[31m=[32m"João da Silva"[31m
+                [33mvalue[31m=[32m"João Silva"[31m
+              [36m/>[31m
+            [36m</div>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"space-y-2"[31m
+            [36m>[31m
+              [36m<label[31m
+                [33mclass[31m=[32m"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"[31m
+                [33mdata-slot[31m=[32m"label"[31m
+                [33mfor[31m=[32m":r2:-form-item"[31m
+              [36m>[31m
+                [0mCPF[0m
+              [36m</label>[31m
+              [36m<input[31m
+                [33maria-describedby[31m=[32m":r2:-form-item-description"[31m
+                [33maria-invalid[31m=[32m"false"[31m
+                [33mclass[31m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[31m
+                [33mdata-slot[31m=[32m"input"[31m
+                [33mid[31m=[32m":r2:-form-item"[31m
+                [33mmaxlength[31m=[32m"14"[31m
+                [33mname[31m=[32m"cpf"[31m
+                [33mplaceholder[31m=[32m"000.000.000-00"[31m
+                [33mvalue[31m=[32m"12345678909"[31m
+              [36m/>[31m
+            [36m</div>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"space-y-2"[31m
+            [36m>[31m
+              [36m<label[31m
+                [33mclass[31m=[32m"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"[31m
+                [33mdata-slot[31m=[32m"label"[31m
+                [33mfor[31m=[32m":r4:-form-item"[31m
+              [36m>[31m
+           ...[39m
+(node:2040) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11036) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6876) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16372) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+ [32m✓[39m src/lib/api/client.test.ts[2m > [22mapiFetch Client[2m > [22mapiFetch_On401_ClearsSessionAndRedirects[32m 30[2mms[22m[39m
+ [32m✓[39m src/lib/api/client.test.ts[2m > [22mapiFetch Client[2m > [22mapiFetch_ParsesProblemDetailsErrors_IntoFieldMap[32m 5[2mms[22m[39m
+(node:2160) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9996) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5080) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+ [32m✓[39m src/components/enrollment/StudentDetailCard.test.tsx[2m > [22mStudentDetailCard Component[2m > [22mStudentDetailCard_AsReceptionist_CpfIsRedacted[32m 46[2mms[22m[39m
+ [32m✓[39m src/components/shared/CursorPagination.test.tsx[2m > [22mCursorPagination Component[2m > [22mCursorPagination_WhenHasMoreFalse_DoesNotRenderButton[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/shared/DataTable.test.tsx[2m > [22mDataTable Component[2m > [22mDataTable_WithLoadingTrue_ShowsSkeletonRows[32m 40[2mms[22m[39m
+ [32m✓[39m src/components/shared/DataTable.test.tsx[2m > [22mDataTable Component[2m > [22mDataTable_WithEmptyData_ShowsEmptyState[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/shared/CursorPagination.test.tsx[2m > [22mCursorPagination Component[2m > [22mRenders button when hasMore is true and triggers onNext on click[32m 159[2mms[22m[39m
+ [32m✓[39m src/lib/cpf.test.ts[2m > [22mCPF Utilities[2m > [22mcpf_ValidateLuhn_CorrectlyValidatesKnownCpfs[32m 2[2mms[22m[39m
+ [32m✓[39m src/components/auth/RequireRole.test.tsx[2m > [22mRequireRole Component[2m > [22mRequireRole_AsReceptionist_DoesNotRenderAdminContent[32m 20[2mms[22m[39m
+ [32m✓[39m src/components/shared/FieldRedacted.test.tsx[2m > [22mFieldRedacted Component[2m > [22mFieldRedacted_WhenValueIsNull_RendersLockIcon[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/shared/FieldRedacted.test.tsx[2m > [22mFieldRedacted Component[2m > [22mFieldRedacted_WhenValueIsPresent_RendersValue[32m 6[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 6 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/components/compliance/CnhStatusCard.test.tsx[2m [ src/components/compliance/CnhStatusCard.test.tsx ][22m
+[31m[1mReferenceError[22m: jest is not defined[39m
+[36m [2m❯[22m src/components/compliance/CnhStatusCard.test.tsx:[2m8:1[22m[39m
+    [90m  6|[39m
+    [90m  7|[39m [90m// Mock the hook[39m
+    [90m  8|[39m jest[33m.[39m[34mmock[39m([32m'../../hooks/useCnhStatus'[39m)[33m;[39m
+    [90m   |[39m [31m^[39m
+    [90m  9|[39m
+    [90m 10|[39m [34mdescribe[39m([32m'CnhStatusCard'[39m[33m,[39m () [33m=>[39m {
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/components/shell/Sidebar.test.tsx[2m [ src/components/shell/Sidebar.test.tsx ][22m
+[31m[1mReferenceError[22m: jest is not defined[39m
+[36m [2m❯[22m src/components/shell/Sidebar.test.tsx:[2m9:12[22m[39m
+    [90m  7|[39m   [33mObject[39m[33m.[39m[34mdefineProperty[39m(window[33m,[39m [32m'matchMedia'[39m[33m,[39m {
+    [90m  8|[39m     writable[33m:[39m [35mtrue[39m[33m,[39m
+    [90m  9|[39m     value[33m:[39m jest[33m.[39m[34mfn[39m()[33m.[39m[34mmockImplementation[39m((query) [33m=>[39m ({
+    [90m   |[39m            [31m^[39m
+    [90m 10|[39m       matches[33m:[39m [35mfalse[39m[33m,[39m
+    [90m 11|[39m       media[33m:[39m query[33m,[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/app/(dashboard)/alunos/page.test.tsx[2m [ src/app/(dashboard)/alunos/page.test.tsx ][22m
+[31m[1mReferenceError[22m: jest is not defined[39m
+[36m [2m❯[22m src/app/(dashboard)/alunos/page.test.tsx:[2m6:1[22m[39m
+    [90m  4|[39m import { useRouter, useSearchParams, usePathname } from 'next/navigati…
+    [90m  5|[39m
+    [90m  6|[39m jest[33m.[39m[34mmock[39m([32m'@/hooks/useStudent'[39m)[33m;[39m
+    [90m   |[39m [31m^[39m
+    [90m  7|[39m jest[33m.[39m[34mmock[39m([32m'next/navigation'[39m[33m,[39m () [33m=>[39m ({
+    [90m  8|[39m   useRouter[33m:[39m jest[33m.[39m[34mfn[39m()[33m,[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/app/(dashboard)/conformidade/ExpiryDashboard.test.tsx[2m [ src/app/(dashboard)/conformidade/ExpiryDashboard.test.tsx ][22m
+[31m[1mReferenceError[22m: jest is not defined[39m
+[36m [2m❯[22m src/app/(dashboard)/conformidade/ExpiryDashboard.test.tsx:[2m8:1[22m[39m
+    [90m  6|[39m
+    [90m  7|[39m [90m// Mock the custom hook[39m
+    [90m  8|[39m jest[33m.[39m[34mmock[39m([32m'@/hooks/useExpiringDocuments'[39m)[33m;[39m
+    [90m   |[39m [31m^[39m
+    [90m  9|[39m
+    [90m 10|[39m [35mconst[39m mockDocuments [33m=[39m [
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/app/(dashboard)/contratos/[contractId]/SignatureCapture.test.tsx[2m [ src/app/(dashboard)/contratos/[contractId]/SignatureCapture.test.tsx ][22m
+[31m[1mError[22m: Failed to resolve import "@/components/ui/card" from "src/app/(dashboard)/contratos/[contractId]/SignatureCapture.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/pedro.cardoso/Documents/Default/cfc_hub/frontend/src/app/(dashboard)/contratos/[contractId]/SignatureCapture.tsx[39m:4:86
+[33m  2  |  import SignatureCanvas from "react-signature-canvas";
+  3  |  import { Button } from "@/components/ui/button";
+  4  |  import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+     |                                                                                         ^
+  5  |  import { AlertCircle, PenTool } from "lucide-react";
+  6  |  import { Alert, AlertDescription } from "@/components/ui/alert";[39m
+[90m [2m❯[22m TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:[2m30602:39[22m[39m
+[90m [2m❯[22m TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:[2m30599:14[22m[39m
+[90m [2m❯[22m normalizeUrl node_modules/vite/dist/node/chunks/node.js:[2m27842:18[22m[39m
+[90m [2m❯[22m node_modules/vite/dist/node/chunks/node.js:[2m27905:30[22m[39m
+[90m [2m❯[22m TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:[2m27873:4[22m[39m
+[90m [2m❯[22m EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:[2m30387:14[22m[39m
+[90m [2m❯[22m loadAndTransform node_modules/vite/dist/node/chunks/node.js:[2m24646:26[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/app/(dashboard)/financeiro/alunos/[studentId]/PaymentPlanTable.test.tsx[2m [ src/app/(dashboard)/financeiro/alunos/[studentId]/PaymentPlanTable.test.tsx ][22m
+[31m[1mReferenceError[22m: jest is not defined[39m
+[36m [2m❯[22m src/app/(dashboard)/financeiro/alunos/[studentId]/PaymentPlanTable.test.tsx:[2m9:1[22m[39m
+    [90m  7|[39m [90m// Mock SessionContext to simulate different roles[39m
+    [90m  8|[39m [35mlet[39m mockRole [33m=[39m [32m'Admin'[39m[33m;[39m
+    [90m  9|[39m jest[33m.[39m[34mmock[39m([32m'@/context/SessionContext'[39m[33m,[39m () [33m=>[39m ({
+    [90m   |[39m [31m^[39m
+    [90m 10|[39m   useSession[33m:[39m () [33m=>[39m ({ role[33m:[39m mockRole })
+    [90m 11|[39m }))[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯[22m[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/components/scheduling/SlotActions.test.tsx[2m > [22mSlotActions Component[2m > [22mSlotActions_AsStudent_OnlyShowsCancelForOwnConfirmedSlot
+[31m[1mTestingLibraryElementError[22m: Unable to find an element with the text: Cancelar. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33mclass[31m=[32m"flex gap-2"[31m
+    [36m/>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[90m [2m❯[22m Object.getElementError node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/components/scheduling/SlotActions.test.tsx:[2m37:19[22m[39m
+    [90m 35|[39m
+    [90m 36|[39m     [90m// Should show Cancel[39m
+    [90m 37|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByText[39m([32m'Cancelar'[39m))[33m.[39m[34mtoBeInTheDocument[39m()[33m;[39m
+    [90m   |[39m                   [31m^[39m
+    [90m 38|[39m   })[33m;[39m
+    [90m 39|[39m })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/app/(dashboard)/alunos/novo/RegistrationStepper.test.tsx[2m > [22mRegistrationStepper[2m > [22mStepConsent_WithoutCheckbox_DisablesSubmitButton
+[31m[1mTestingLibraryElementError[22m[39m: Found multiple elements with the text of: /Cidade/i
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<input[39m
+  [33maria-describedby[39m=[32m":rm:-form-item-description"[39m
+  [33maria-invalid[39m=[32m"false"[39m
+  [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+  [33mdata-slot[39m=[32m"input"[39m
+  [33mid[39m=[32m":rm:-form-item"[39m
+  [33mname[39m=[32m"cidade"[39m
+  [33mplaceholder[39m=[32m"São Paulo"[39m
+  [33mvalue[39m=[32m""[39m
+[36m/>[39m
+
+Ignored nodes: comments, script, style
+[36m<span[39m
+  [33maria-checked[39m=[32m"false"[39m
+  [33maria-describedby[39m=[32m":rs:-form-item-description"[39m
+  [33maria-invalid[39m=[32m"false"[39m
+  [33maria-labelledby[39m=[32m":rs:-form-item-label"[39m
+  [33mclass[39m=[32m"peer relative flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-input transition-colors outline-none group-has-disabled/field:opacity-50 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary"[39m
+  [33mdata-slot[39m=[32m"checkbox"[39m
+  [33mdata-unchecked[39m=[32m""[39m
+  [33mid[39m=[32m"base-ui-:rt:"[39m
+  [33mrole[39m=[32m"checkbox"[39m
+  [33mtabindex[39m=[32m"0"[39m
+[36m/>[39m
+
+Ignored nodes: comments, script, style
+[36m<input[39m
+  [33maria-hidden[39m=[32m"true"[39m
+  [33mid[39m=[32m":rs:-form-item"[39m
+  [33mstyle[39m=[32m"clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"[39m
+  [33mtabindex[39m=[32m"-1"[39m
+  [33mtype[39m=[32m"checkbox"[39m
+[36m/>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"mx-auto max-w-2xl p-6 bg-card rounded-lg shadow-sm border"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"mb-8"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"text-xl font-semibold mb-2"[39m
+        [36m>[39m
+          [0mCadastrar Novo Aluno[0m
+        [36m</h2>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex justify-between items-center text-sm text-muted-foreground"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex items-center"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex items-center justify-center w-8 h-8 rounded-full border-2 border-primary text-primary"[39m
+            [36m>[39m
+              [0m1[0m
+            [36m</div>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"ml-2 hidden sm:block text-foreground"[39m
+            [36m>[39m
+              [0mDados Pessoais[0m
+            [36m</span>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"w-12 h-[2px] mx-2 bg-primary"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex items-center"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex items-center justify-center w-8 h-8 rounded-full border-2 border-primary text-primary"[39m
+            [36m>[39m
+              [0m2[0m
+            [36m</div>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"ml-2 hidden sm:block text-foreground"[39m
+            [36m>[39m
+              [0mEndereço[0m
+            [36m</span>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"w-12 h-[2px] mx-2 bg-muted"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex items-center"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex items-center justify-center w-8 h-8 rounded-full border-2 border-muted"[39m
+            [36m>[39m
+              [0m3[0m
+            [36m</div>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"ml-2 hidden sm:block "[39m
+            [36m>[39m
+              [0mConsentimento[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-6"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hidden"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid grid-cols-1 md:grid-cols-2 gap-4"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"space-y-2 md:col-span-2"[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"[39m
+                [33mdata-slot[39m=[32m"label"[39m
+                [33mfor[39m=[32m":r0:-form-item"[39m
+              [36m>[39m
+                [0mNome Completo[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33maria-describedby[39m=[32m":r0:-form-item-description"[39m
+                [33maria-invalid[39m=[32m"false"[39m
+                [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+                [33mdata-slot[39m=[32m"input"[39m
+                [33mid[39m=[32m":r0:-form-item"[39m
+                [33mname[39m=[32m"nome"[39m
+                [33mplaceholder[39m=[32m"João da Silva"[39m
+                [33mvalue[39m=[32m"João Silva"[39m
+              [36m/>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"space-y-2"[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"[39m
+                [33mdata-slot[39m=[32m"label"[39m
+                [33mfor[39m=[32m":r2:-form-item"[39m
+              [36m>[39m
+                [0mCPF[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33maria-describedby[39m=[32m":r2:-form-item-description"[39m
+                [33maria-invalid[39m=[32m"false"[39m
+                [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+                [33mdata-slot[39m=[32m"input"[39m
+                [33mid[39m=[32m":r2:-form-item"[39m
+                [33mmaxlength[39m=[32m"14"[39m
+                [33mname[39m=[32m"cpf"[39m
+                [33mplaceholder[39m=[32m"000.000.000-00"[39m
+                [33mvalue[39m=[32m"12345678909"[39m
+              [36m/>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"space-y-2"[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"[39m
+                [33mdata-slot[39m=[32m"label"[39m
+                [33mfor[39m=[32m":r4:-form-item"[39m
+              [36m>[39m
+           ...
+[90m [2m❯[22m Object.getElementError node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m getElementError node_modules/@testing-library/dom/dist/query-helpers.js:[2m20:35[22m[39m
+[90m [2m❯[22m getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:[2m23:10[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m55:13[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/app/(dashboard)/alunos/novo/RegistrationStepper.test.tsx:[2m50:29[22m[39m
+    [90m 48|[39m     fireEvent.change(screen.getByLabelText(/Número/i), { target: { val…
+    [90m 49|[39m     fireEvent.change(screen.getByLabelText(/Bairro/i), { target: { val…
+    [90m 50|[39m     fireEvent.change(screen.getByLabelText(/Cidade/i), { target: { val…
+    [90m   |[39m                             [31m^[39m
+    [90m 51|[39m
+    [90m 52|[39m     [90m// Select state (SP)[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m8 failed[39m[22m[2m | [22m[1m[32m10 passed[39m[22m[90m (18)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m14 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (17)[39m
+[2m   Start at [22m 10:22:46
+[2m   Duration [22m 5.06s[2m (transform 2.16s, setup 6.22s, import 6.37s, tests 3.24s, environment 24.32s)[22m
+

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { CnhStatusCard } from './CnhStatusCard';
@@ -5,13 +6,13 @@ import { useCnhStatus } from '../../hooks/useCnhStatus';
 import '@testing-library/jest-dom';
 
 // Mock the hook
-jest.mock('../../hooks/useCnhStatus');
+vi.mock('../../hooks/useCnhStatus');
 
 describe('CnhStatusCard', () => {
-  const mockUseCnhStatus = useCnhStatus as jest.Mock;
+  const mockUseCnhStatus = useCnhStatus as vi.Mock;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('CnhStatusCard_WhenUnavailable_ShowsManualCheckMessage', () => {
@@ -19,7 +20,7 @@ describe('CnhStatusCard', () => {
       data: { isAvailable: false },
       loading: false,
       error: null,
-      refetch: jest.fn(),
+      refetch: vi.fn(),
     });
 
     render(<CnhStatusCard studentId="123" />);
@@ -34,11 +35,11 @@ describe('CnhStatusCard', () => {
       data: null,
       loading: false,
       error: { status: 429, retryAfter: 30 },
-      refetch: jest.fn(),
+      refetch: vi.fn(),
     });
 
     render(<CnhStatusCard studentId="123" />);
 
-    expect(screen.getByText(/Aguarde 30s/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Aguarde 30s/i)[0]).toBeInTheDocument();
   });
 });

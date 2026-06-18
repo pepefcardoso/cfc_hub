@@ -1,24 +1,25 @@
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import StudentListPage from './page';
 import { useStudents } from '@/hooks/useStudent';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
-jest.mock('@/hooks/useStudent');
-jest.mock('next/navigation', () => ({
-  useRouter: jest.fn(),
-  useSearchParams: jest.fn(),
-  usePathname: jest.fn(),
+vi.mock('@/hooks/useStudent');
+vi.mock('next/navigation', () => ({
+  useRouter: vi.fn(),
+  useSearchParams: vi.fn(),
+  usePathname: vi.fn(),
 }));
 
 describe('StudentListPage', () => {
   beforeEach(() => {
-    (useRouter as jest.Mock).mockReturnValue({ replace: jest.fn() });
-    (usePathname as jest.Mock).mockReturnValue('/alunos');
-    (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
+    (useRouter as vi.Mock).mockReturnValue({ replace: vi.fn() });
+    (usePathname as vi.Mock).mockReturnValue('/alunos');
+    (useSearchParams as vi.Mock).mockReturnValue(new URLSearchParams());
   });
 
   it('CPF column renders FieldRedacted for roles without access (cpf is null)', () => {
-    (useStudents as jest.Mock).mockReturnValue({
+    (useStudents as vi.Mock).mockReturnValue({
       students: [
         { id: '1', name: 'João', cpf: null, status: 'Active' },
         { id: '2', name: 'Maria', cpf: '123.456.789-00', status: 'Active' },
@@ -26,7 +27,7 @@ describe('StudentListPage', () => {
       isLoading: false,
       hasMore: false,
       nextCursor: null,
-      loadMore: jest.fn(),
+      loadMore: vi.fn(),
     });
 
     render(<StudentListPage />);

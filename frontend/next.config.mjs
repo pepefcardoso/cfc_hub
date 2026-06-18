@@ -4,6 +4,12 @@ const nextConfig = {
   experimental: {
     cpus: 2,
   },
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.parallelism = 1;
+    }
+    return config;
+  },
 };
 
 export default nextConfig;

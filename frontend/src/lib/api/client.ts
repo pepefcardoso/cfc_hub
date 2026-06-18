@@ -40,7 +40,10 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
         status: response.status,
         type: 'about:blank',
         detail: response.statusText,
-        traceId: ''
+        traceId: '',
+        retryAfter: response.status === 429 && response.headers.has('Retry-After') 
+          ? parseInt(response.headers.get('Retry-After') || '0', 10) 
+          : undefined
       });
     }
     throw new ApiError({
@@ -48,7 +51,10 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
       type: errorData.type || 'about:blank',
       detail: errorData.detail || response.statusText,
       errors: errorData.errors,
-      traceId: errorData.traceId || ''
+      traceId: errorData.traceId || '',
+      retryAfter: response.status === 429 && response.headers.has('Retry-After') 
+        ? parseInt(response.headers.get('Retry-After') || '0', 10) 
+        : undefined
     });
   }
 

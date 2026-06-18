@@ -11,6 +11,7 @@ export interface ApiError {
   detail: string;
   errors?: Record<string, string[]>;
   traceId: string;
+  retryAfter?: number;
 }
 
 export interface Session {

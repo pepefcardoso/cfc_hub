@@ -13,6 +13,14 @@ export interface Student {
   isActive?: boolean;
 }
 
+export interface CnhStatus {
+  isAvailable: boolean;
+  status?: string;
+  expiryDate?: string;
+  points?: number;
+  fetchedAt?: string;
+}
+
 export const studentsApi = {
   list: (q: string = '', cursor: string | null = null, signal?: AbortSignal) => {
     const params = new URLSearchParams();
@@ -33,4 +41,6 @@ export const studentsApi = {
     }),
   getEnrollments: (studentId: string, signal?: AbortSignal) =>
     apiFetch<any[]>(`/students/${studentId}/enrollments`, { signal }),
+  getCnhStatus: (studentId: string, signal?: AbortSignal) =>
+    apiFetch<CnhStatus>(`/students/${studentId}/cnh-status`, { signal }),
 };

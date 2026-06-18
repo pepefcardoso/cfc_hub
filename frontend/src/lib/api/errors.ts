@@ -6,6 +6,7 @@ export class ApiError extends Error implements IApiError {
   detail: string;
   errors?: Record<string, string[]>;
   traceId: string;
+  retryAfter?: number;
 
   constructor(data: IApiError) {
     super(data.detail || 'API Error');
@@ -15,6 +16,7 @@ export class ApiError extends Error implements IApiError {
     this.detail = data.detail;
     this.errors = data.errors;
     this.traceId = data.traceId;
+    this.retryAfter = data.retryAfter;
   }
 }
 

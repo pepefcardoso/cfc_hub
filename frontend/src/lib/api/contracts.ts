@@ -3,7 +3,11 @@ import type { PaginatedResponse } from './types';
 
 export interface Contract {
   id: string;
-  [key: string]: any;
+  studentId: string;
+  status: 'Generated' | 'Signed' | 'Pending';
+  signedAt?: string;
+  documentUrl?: string;
+  [key: string]: unknown;
 }
 
 export const contractsApi = {
@@ -18,4 +22,6 @@ export const contractsApi = {
     apiFetch<Contract>(`/contracts/${id}`, { method: 'PUT', body: JSON.stringify(data), signal }),
   delete: (id: string, signal?: AbortSignal) => 
     apiFetch<void>(`/contracts/${id}`, { method: 'DELETE', signal }),
+  sign: (id: string, data: { signatureHash: string; ipAddress: string }, signal?: AbortSignal) =>
+    apiFetch<Contract>(`/contracts/${id}/sign`, { method: 'PATCH', body: JSON.stringify(data), signal }),
 };

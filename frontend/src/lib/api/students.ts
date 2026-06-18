@@ -4,7 +4,13 @@ import type { PaginatedResponse } from './types';
 export interface Student {
   id: string;
   name: string;
-  cpf: string;
+  cpf: string | null;
+  rg?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  dateOfBirth?: string | null;
+  status?: string;
+  isActive?: boolean;
 }
 
 export const studentsApi = {
@@ -17,4 +23,14 @@ export const studentsApi = {
   listAll: (q: string = '') => fetchAllPages((cursor) => studentsApi.list(q, cursor)),
   get: (id: string, signal?: AbortSignal) => 
     apiFetch<Student>(`/students/${id}`, { signal }),
+  delete: (id: string, signal?: AbortSignal) =>
+    apiFetch<void>(`/students/${id}`, { method: 'DELETE', signal }),
+  createEnrollment: (studentId: string, category: string, signal?: AbortSignal) =>
+    apiFetch<any>(`/students/${studentId}/enrollments`, { 
+      method: 'POST', 
+      body: JSON.stringify({ category }), 
+      signal 
+    }),
+  getEnrollments: (studentId: string, signal?: AbortSignal) =>
+    apiFetch<any[]>(`/students/${studentId}/enrollments`, { signal }),
 };
